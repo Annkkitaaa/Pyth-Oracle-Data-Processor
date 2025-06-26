@@ -5,10 +5,9 @@ export interface PriceFeedInfo {
     assetType: string;
   }
   
-  // 20 price feeds - using verified crypto feeds for reliable demo
-  // Note: For production, use appropriate price feed IDs for each asset type
+  // 20 price feeds using REAL Pyth Network price feed IDs
   export const PRICE_FEEDS: PriceFeedInfo[] = [
-    // Primary crypto feeds (verified working)
+    // Cryptocurrencies (verified working IDs)
     {
       id: '0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43',
       symbol: 'BTC/USD',
@@ -34,103 +33,105 @@ export interface PriceFeedInfo {
       assetType: 'crypto'
     },
     {
-      id: '0x150ac9b959aee0da7793b28c39a8b7ad112f5d8c58f2e03a5b3db05e49a0c3a8',
+      id: '0x2a01deaec9e51a579277b34b122399984d0bbf57e2458a7e42fecd2829867a0d',
       symbol: 'ADA/USD',
       description: 'Cardano / US Dollar',
       assetType: 'crypto'
     },
-    
-    // Additional crypto feeds for demo (20 total)
     {
-      id: '0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43',
+      id: '0x93da3352f9f1d105fdfe4971cfa80e9dd777bfc5d0f683ebb6e1294b92137bb7',
+      symbol: 'AVAX/USD',
+      description: 'Avalanche / US Dollar',
+      assetType: 'crypto'
+    },
+    {
+      id: '0x8ac0c70fff57e9aefdf5edf44b51d62c2d433653cbb2cf5cc06bb115af04d221',
+      symbol: 'LINK/USD',
+      description: 'Chainlink / US Dollar',
+      assetType: 'crypto'
+    },
+    {
+      id: '0x5de33a9112c2b700b8d30b8a3402c103578ccfa2765696471cc672bd5cf6ac52',
+      symbol: 'MATIC/USD',
+      description: 'Polygon / US Dollar',
+      assetType: 'crypto'
+    },
+    {
+      id: '0xdcef50dd0a4cd2dcc17e45df1676dcb336a11a61c69df7a0299b0150c672d25c',
+      symbol: 'DOGE/USD',
+      description: 'Dogecoin / US Dollar',
+      assetType: 'crypto'
+    },
+    {
+      id: '0x78d185a741d07edb3412b09008b7c5cfb9bbbd7d568bf00ba737b456ba171501',
+      symbol: 'UNI/USD',
+      description: 'Uniswap / US Dollar',
+      assetType: 'crypto'
+    },
+    
+    // US Equities (real equity feed IDs)
+    {
+      id: '0x49f6b65cb1de6b10eaf75e7c03ca029c306d0357e91b5311b175084a5ad55688',
       symbol: 'AAPL/USD',
-      description: 'Apple Inc (Demo - using BTC feed)',
+      description: 'Apple Inc',
       assetType: 'equity'
     },
     {
-      id: '0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace',
+      id: '0x16dad506d7db8da01c87581c87ca897a012a153557d4d578c3b9c9e1bc0632f1',
       symbol: 'TSLA/USD',
-      description: 'Tesla Inc (Demo - using ETH feed)',
+      description: 'Tesla Inc',
       assetType: 'equity'
     },
     {
-      id: '0x2b89b9dc8fdf9f34709a5b106b472f0f39bb6ca9ce04b0fd7f2e971688e2e53b',
+      id: '0xe65ff435be42630439c96396653a342829e877e2aafaeaf1a10d0ee5fd2cf3f2',
       symbol: 'GOOGL/USD',
-      description: 'Alphabet Inc (Demo - using USDT feed)',
+      description: 'Alphabet Inc Class A',
       assetType: 'equity'
     },
     {
-      id: '0xef0d8b6fda2ceba41da15d4095d1da392a0d2f8ed0c6c7bc0f4cfac8c280b56d',
+      id: '0xd0ca23c1cc005e004ccf1db5bf76aeb6a49218f43dac3d4b275e92de12ded4d1',
       symbol: 'MSFT/USD',
-      description: 'Microsoft Corp (Demo - using SOL feed)',
+      description: 'Microsoft Corporation',
       assetType: 'equity'
     },
     {
-      id: '0x150ac9b959aee0da7793b28c39a8b7ad112f5d8c58f2e03a5b3db05e49a0c3a8',
+      id: '0xb1073854ed24cbc755dc527418f52b7d271f6cc967bbf8d8129112b18860a593',
       symbol: 'NVDA/USD',
-      description: 'NVIDIA Corp (Demo - using ADA feed)',
+      description: 'NVIDIA Corporation',
       assetType: 'equity'
     },
     
+    // Commodities (real commodity feed IDs)
     {
-      id: '0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43',
-      symbol: 'AMZN/USD',
-      description: 'Amazon.com Inc (Demo)',
-      assetType: 'equity'
-    },
-    {
-      id: '0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace',
-      symbol: 'META/USD',
-      description: 'Meta Platforms (Demo)',
-      assetType: 'equity'
-    },
-    {
-      id: '0x2b89b9dc8fdf9f34709a5b106b472f0f39bb6ca9ce04b0fd7f2e971688e2e53b',
+      id: '0x765d2ba906dbc32ca17cc11f5310a89e9ee1f6420508c63861f2f8ba4ee34bb2',
       symbol: 'XAU/USD',
-      description: 'Gold Spot (Demo)',
+      description: 'Gold Spot',
       assetType: 'commodity'
     },
     {
-      id: '0xef0d8b6fda2ceba41da15d4095d1da392a0d2f8ed0c6c7bc0f4cfac8c280b56d',
+      id: '0xf2fb02c32b055c805e7238d628e5e9dadef274376114eb1f012337cabe93871e',
       symbol: 'XAG/USD',
-      description: 'Silver Spot (Demo)',
-      assetType: 'commodity'
-    },
-    {
-      id: '0x150ac9b959aee0da7793b28c39a8b7ad112f5d8c58f2e03a5b3db05e49a0c3a8',
-      symbol: 'WTI/USD',
-      description: 'Crude Oil WTI (Demo)',
+      description: 'Silver Spot',
       assetType: 'commodity'
     },
     
+    // Forex (real forex feed IDs)
     {
-      id: '0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43',
-      symbol: 'BRENT/USD',
-      description: 'Brent Crude Oil (Demo)',
-      assetType: 'commodity'
-    },
-    {
-      id: '0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace',
-      symbol: 'NG/USD',
-      description: 'Natural Gas (Demo)',
-      assetType: 'commodity'
-    },
-    {
-      id: '0x2b89b9dc8fdf9f34709a5b106b472f0f39bb6ca9ce04b0fd7f2e971688e2e53b',
+      id: '0xa995d00bb36a63cef7fd2c287dc105fc8f3d93779f062f09551b0af3e81ec30b',
       symbol: 'EUR/USD',
-      description: 'Euro / US Dollar (Demo)',
+      description: 'Euro / US Dollar',
       assetType: 'forex'
     },
     {
-      id: '0xef0d8b6fda2ceba41da15d4095d1da392a0d2f8ed0c6c7bc0f4cfac8c280b56d',
+      id: '0x84c2dde9633d93d1bcad84e7dc41c9d56578b7ec52fabedc1f335d673df0a7c1',
       symbol: 'GBP/USD',
-      description: 'British Pound / US Dollar (Demo)',
+      description: 'British Pound / US Dollar',
       assetType: 'forex'
     },
     {
-      id: '0x150ac9b959aee0da7793b28c39a8b7ad112f5d8c58f2e03a5b3db05e49a0c3a8',
-      symbol: 'JPY/USD',
-      description: 'Japanese Yen / US Dollar (Demo)',
+      id: '0xef2c98c804ba503c6a707e38be4dfbb16683775f195b091252bf24693042fd52',
+      symbol: 'USD/JPY',
+      description: 'US Dollar / Japanese Yen',
       assetType: 'forex'
     }
   ];
