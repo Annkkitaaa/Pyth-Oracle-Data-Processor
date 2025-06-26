@@ -8,6 +8,12 @@ export class PythDataDecoder {
   static decodePriceUpdates(hermesResponse: HermesResponse): ProcessingResult {
     try {
       const startTime = Date.now();
+      
+      // Validate input data
+      if (!hermesResponse.binary?.data?.[0]) {
+        throw new Error('No binary data found in Hermes response');
+      }
+      
       const binaryData = hermesResponse.binary.data[0]; // Get the hex string
       const parsedData = hermesResponse.parsed;
       
