@@ -1,0 +1,543 @@
+{
+  "fetchTimestamp": "2025-06-26T19:36:16.600Z",
+  "totalFeeds": 20,
+  "successfulFeeds": 20,
+  "processingTime": 1483,
+  "priceFeeds": [
+    {
+      "id": "0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
+      "symbol": "BTC/USD",
+      "description": "Bitcoin / US Dollar",
+      "assetType": "crypto"
+    },
+    {
+      "id": "0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace",
+      "symbol": "ETH/USD",
+      "description": "Ethereum / US Dollar",
+      "assetType": "crypto"
+    },
+    {
+      "id": "0xef0d8b6fda2ceba41da15d4095d1da392a0d2f8ed0c6c7bc0f4cfac8c280b56d",
+      "symbol": "SOL/USD",
+      "description": "Solana / US Dollar",
+      "assetType": "crypto"
+    },
+    {
+      "id": "0x2b89b9dc8fdf9f34709a5b106b472f0f39bb6ca9ce04b0fd7f2e971688e2e53b",
+      "symbol": "USDT/USD",
+      "description": "Tether / US Dollar",
+      "assetType": "crypto"
+    },
+    {
+      "id": "0xeaa020c61cc479712813461ce153894a96a6c00b21ed0cfc2798d1f9a9e9c94a",
+      "symbol": "USDC/USD",
+      "description": "USD Coin / US Dollar",
+      "assetType": "crypto"
+    },
+    {
+      "id": "0x2a01deaec9e51a579277b34b122399984d0bbf57e2458a7e42fecd2829867a0d",
+      "symbol": "ADA/USD",
+      "description": "Cardano / US Dollar",
+      "assetType": "crypto"
+    },
+    {
+      "id": "0x8ac0c70fff57e9aefdf5edf44b51d62c2d433653cbb2cf5cc06bb115af04d221",
+      "symbol": "LINK/USD",
+      "description": "Chainlink / US Dollar",
+      "assetType": "crypto"
+    },
+    {
+      "id": "0x78d185a741d07edb3412b09008b7c5cfb9bbbd7d568bf00ba737b456ba171501",
+      "symbol": "UNI/USD",
+      "description": "Uniswap / US Dollar",
+      "assetType": "crypto"
+    },
+    {
+      "id": "0xdcef50dd0a4cd2dcc17e45df1676dcb336a11a61c69df7a0299b0150c672d25c",
+      "symbol": "DOGE/USD",
+      "description": "Dogecoin / US Dollar",
+      "assetType": "crypto"
+    },
+    {
+      "id": "0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
+      "symbol": "AAPL/USD",
+      "description": "Apple Inc (Demo using BTC feed)",
+      "assetType": "equity"
+    },
+    {
+      "id": "0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace",
+      "symbol": "TSLA/USD",
+      "description": "Tesla Inc (Demo using ETH feed)",
+      "assetType": "equity"
+    },
+    {
+      "id": "0xef0d8b6fda2ceba41da15d4095d1da392a0d2f8ed0c6c7bc0f4cfac8c280b56d",
+      "symbol": "GOOGL/USD",
+      "description": "Alphabet Inc (Demo using SOL feed)",
+      "assetType": "equity"
+    },
+    {
+      "id": "0x2b89b9dc8fdf9f34709a5b106b472f0f39bb6ca9ce04b0fd7f2e971688e2e53b",
+      "symbol": "MSFT/USD",
+      "description": "Microsoft Corp (Demo using USDT feed)",
+      "assetType": "equity"
+    },
+    {
+      "id": "0xeaa020c61cc479712813461ce153894a96a6c00b21ed0cfc2798d1f9a9e9c94a",
+      "symbol": "NVDA/USD",
+      "description": "NVIDIA Corp (Demo using USDC feed)",
+      "assetType": "equity"
+    },
+    {
+      "id": "0x2a01deaec9e51a579277b34b122399984d0bbf57e2458a7e42fecd2829867a0d",
+      "symbol": "AMZN/USD",
+      "description": "Amazon Inc (Demo using ADA feed)",
+      "assetType": "equity"
+    },
+    {
+      "id": "0x8ac0c70fff57e9aefdf5edf44b51d62c2d433653cbb2cf5cc06bb115af04d221",
+      "symbol": "XAU/USD",
+      "description": "Gold Spot (Demo using LINK feed)",
+      "assetType": "commodity"
+    },
+    {
+      "id": "0x78d185a741d07edb3412b09008b7c5cfb9bbbd7d568bf00ba737b456ba171501",
+      "symbol": "XAG/USD",
+      "description": "Silver Spot (Demo using UNI feed)",
+      "assetType": "commodity"
+    },
+    {
+      "id": "0xdcef50dd0a4cd2dcc17e45df1676dcb336a11a61c69df7a0299b0150c672d25c",
+      "symbol": "WTI/USD",
+      "description": "Crude Oil (Demo using DOGE feed)",
+      "assetType": "commodity"
+    },
+    {
+      "id": "0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
+      "symbol": "EUR/USD",
+      "description": "Euro/Dollar (Demo using BTC feed)",
+      "assetType": "forex"
+    },
+    {
+      "id": "0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace",
+      "symbol": "GBP/USD",
+      "description": "Pound/Dollar (Demo using ETH feed)",
+      "assetType": "forex"
+    }
+  ],
+  "hermesResponse": {
+    "binary": {
+      "encoding": "hex",
+      "data": [
+        "504e41550100000003b801000000040d02ff80725a03021adc7563e080de731eb9aded476ba91fc5210d8707380eb8c5cc6418605fd185244d11ca811036c6ed7e2214c6471b333c18e858cd7cdf630c220103dfa9643f0936080307af50c4523d1b3cd26b3e17b532142b4eef2f680883737444669b539639501568f567d52e384c75ba82d39192b546fc34d7978cfb12bb3600044e644808500c98a145542bf62232b4dd9c050a21743f4c0f39944d3a902358545e6eb56562e2b39796763b81be6384794e4a92bab8e08be7e390ed9f0206af700006d3d0c15e4b6392bf673e8cf376040f19ab89d84ad3844644e672d0f02f8dc0933c59e14aeface6c36fb32187f0033f6f3176cfc6cc27fc72975992e44a620caa0008e1bcfb818a6275037d3261044953136659576d11f58c513511b19745fde330c3048f68bd70a4e567ad4d9cfb23412e0d2a9a4c7b74309e11c257dd53aba84cd3000ae9bcf3f6b5e1c906cd4bb336856ac290793bbf8072b76e25f287659c4f292e3c60272d8dc7cb77ada3bf8c0066b336ee643d0f363a298241ef82aa05384321ff010bccebf63b696b264a2d191bb287b21ff2248b9c4dab24a4bc8147ecfaf537352e6b7e3259f1f88688513bea62668ff3bbfecd30f26eebf22ed569847f4655fa9d010c35b4d41abe8b4372f07db47aa1f4246d73051e081a7cda7f62b716bc862603721fc6ca5416940e4deb2f9d6762b370155a98d701a400163aba601cfb306a1a63000dd862cea3260f99a74e1cce6660d8a34c5d2a5747b9b68d9743e898a63c42c9395c357b332768a8951668e1a2602686dc5faf6afe12b45dd8d100ed52f46e4b66010e2bbeed618f1b129c191194ec46ea62a150d5a97a8fad313a95c715ddf004a5125e7be7c7800671383273f5def67ed64c91f01ecc33c4cacebf77067de23cdec50010f2727c99661359924bdb81de2b6313aad905c3d41947d955975b74dab11e14b91288a2aa29008feb1f2f14af5aa013c7d4b65494bcd65c1c3bb6bbbb65cc805101110b36def6a2df6a197bd10b3f461ea6b79c5c41e9b94b4e89b855c3a09f45f1ce0d99c4d656aa21a29dd6ba09f7d54a27e5bdd3bf614c44704836dc98ff2b436f011231ab4eb1b2a635bf568909b350ecdbb853fc5267b58810265ec62cf259190da03e01c2c2079b86a9e716a2de64f1b81274ca845c3f73fbc902beaf79a38fb94d01685da13200000000001ae101faedac5851e32b9b23b5f9411a8c2bac4aae3ed4dd7b811dd1a72ea4aa7100000000086a872b014155575600000000000d781478000027101850b06fbe2b25478bd6bf4f40b5c4937b702fc214005500e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43000009c848f3505900000000c1f3e0a6fffffff800000000685da13200000000685da131000009c50dfd206000000000da8e7bd40c4a04cf3f18982a956e4b78eb688c6b267f35a3b0a2b60e1e43b60f3f795a0c3df0c25491448bb0380fd8bf3adc884a05f916233444c0c983b904d7218a0764ffc479717d95108b774bbb2a91c72cc244791f131402d94dc7a02dde265e5b0104028bee292d4499f4c9d17c2b3ef470823ad4c7d4edfb96a69446f036f75ca139ad1e40386a8c798751a71a7404bbcd5cdc6fc68f6f78fffdfe10e868dd76ec3b90d0ef4ecfcbde0ae70bb4915d3323514e4960e0c433b584f16cbe71c188eb21f1b8757d234f47b65e58e097e02e5878f5a03fa9a0e7ab5121003ca6da7b758d4f69c11eb6f088ec970ba99161b6cf2d005500ff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace00000038b2e15b360000000006805555fffffff800000000685da13200000000685da1310000003890b47490000000000738fe230c22aca210d9b6caa4de0eaba2bbbdd9050528d31e59e2614d1dd6f993bf7c3eb6bacef91af7e89cee5fc28ef6b4db232dc74e4ddd84574bd3277b5e817d53a5d536ac74985215a60f8ce21bada965e87dc9992132d1f4687e53ea48eb00d6cab9ef1504040b9ee8c5dbb1d69b2e62d3de6bdfd44053e76eadd3e04143077b42e6707b300ffcf813db02c755354caad76063a2a18cc4ab78619720d951a56501d7f7054548b74c5a083cc3e92fa90542a4727f353f0459cf730dba39dd350f8346a61c1f1a92e2b6555e58e097e02e5878f5a03fa9a0e7ab5121003ca6da7b758d4f69c11eb6f088ec970ba99161b6cf2d005500ef0d8b6fda2ceba41da15d4095d1da392a0d2f8ed0c6c7bc0f4cfac8c280b56d000000034edcc9b40000000000627a4cfffffff800000000685da13200000000685da131000000034deab25800000000007308420c3a3dbd5d508dba3a7044a96a74a385f93a9cb335351a93cc6303841e26560b966e3e00daba9c476406b6e73732cf8d89ce818384968b7180be4f8ab8db41173d53eba3e437e32ed880d3a7f0372e90d8c546177ba9e773d3801b062dad0fba314055a83d49546cd3f312b1648113e34c4701f0ecdc6cc4f54ab5f4af6af9b8cca6d5d8f888910d3177d3e3064caad76063a2a18cc4ab78619720d951a56501d7f7054548b74c5a083cc3e92fa90542a4727f353f0459cf730dba39dd350f8346a61c1f1a92e2b6555e58e097e02e5878f5a03fa9a0e7ab5121003ca6da7b758d4f69c11eb6f088ec970ba99161b6cf2d0055002b89b9dc8fdf9f34709a5b106b472f0f39bb6ca9ce04b0fd7f2e971688e2e53b0000000005f6543c000000000000d7cefffffff800000000685da13200000000685da1310000000005f6533a000000000000e5000cf48d425c2ca914c24e8f91d833cbe15577b7fdcac2dc4777131a00095c3160d38c88c2d2682f269be1aebd0299cd8977c1eadbca0ea1b1550491cf27a7d60d4c9a64b5fe20663a305ed1334f51a2e65e531513d1eae661cac086286355da3b5f7eb5e436a57905d3891bfe95751c477c7fd50e92b664e21f47a489c4683d513fed2fd44fe53b7f2a4cfbad189f212a7338b6bb062dc3a07e35c23e5f3cc2cf3adee2b0b8a109fb84871eba76558893b04511688ec7a7335f8ef841929cc9d8c36fad07acff0f2eb67ccb6b5950cd296a906eb848ad3c7b2240fba3c2da7b758d4f69c11eb6f088ec970ba99161b6cf2d005500eaa020c61cc479712813461ce153894a96a6c00b21ed0cfc2798d1f9a9e9c94a0000000005f5c48d0000000000010afafffffff800000000685da13200000000685da1310000000005f5c08300000000000116b70ca76a5288f572a574ac0480b79dfa6e70ce4c192d4241a2ae126b8e7cd9897fbbe2bc526be857e12b6b3c5f7fd03ee902e326d638da80a437918e4e13ffbdb11999615d15cf2d7bd1cbd458ed3e17931abf87c94ac70a101f03153af3070684483345c40ecd94e8ae842bb0de90ec8755ff04f254ac1172d59446f036f75ca139ad1e40386a8c798751a71a7404bbcd5cdc6fc68f6f78fffdfe10e868dd76ec3b90d0ef4ecfcbde0ae70bb4915d3323514e4960e0c433b584f16cbe71c188eb21f1b8757d234f47b65e58e097e02e5878f5a03fa9a0e7ab5121003ca6da7b758d4f69c11eb6f088ec970ba99161b6cf2d0055002a01deaec9e51a579277b34b122399984d0bbf57e2458a7e42fecd2829867a0d00000000035180e5000000000000be92fffffff800000000685da13200000000685da13100000000034f1055000000000000ad870c9d2096c5fba4d22f3267caad17d1796dc6cda75a4124eed215f38656a40587554d8ed589012f75d7ac58d8bc174b4bbe4d82b1e9dc0c48db44bed072364bb6c88b0b7a662cc5631f73ea32b4eef8b7ef531513d1eae661cac086286355da3b5f7eb5e436a57905d3891bfe95751c477c7fd50e92b664e21f47a489c4683d513fed2fd44fe53b7f2a4cfbad189f212a7338b6bb062dc3a07e35c23e5f3cc2cf3adee2b0b8a109fb84871eba76558893b04511688ec7a7335f8ef841929cc9d8c36fad07acff0f2eb67ccb6b5950cd296a906eb848ad3c7b2240fba3c2da7b758d4f69c11eb6f088ec970ba99161b6cf2d0055008ac0c70fff57e9aefdf5edf44b51d62c2d433653cbb2cf5cc06bb115af04d221000000004e23fc8700000000000d821afffffff800000000685da13200000000685da131000000004dfefcc0000000000010082d0c1465ea881c49e7597a11d887f6a699946296f2f47dc6ed53a3c5371f55cb015c29d48d5318983ec42ed0a6531f4dbb53a3d34288a94c986128880153e1ad6cff47ad86d259d10caadef6be572c77bcdd74af18c919a68c66de0ab77540236032382029d652d2d7eebd811fab53dd0bceaf8e0cf85ba533f931e93b73cb337fa869419ca5d5b9bf4f5df6d8b8e55a6de0372a79d5d1978bc68fd031d7cf9afe9d07d23668dc35b4e87c7f7f34ab766ef47d2550b739eeeb8d7438b7bf1650c1948608662083d3476e7ccb6b5950cd296a906eb848ad3c7b2240fba3c2da7b758d4f69c11eb6f088ec970ba99161b6cf2d00550078d185a741d07edb3412b09008b7c5cfb9bbbd7d568bf00ba737b456ba1715010000000028e2ed7f00000000000a05b9fffffff800000000685da13200000000685da13100000000289168ce0000000000088e440cbf25df85707ca12c545de1eadbbd756de4531719146f3a72dbb77f5e57cf3a75c46879d2209ebbf5995b270cfd29322e107e9b65c9eb14980dbd64f82818f3c316f640b89d349242d579d0c7c81fc40df2728c160f475e37af75dbfc48db0cd89018e97537074a713777f340df1b799f02840faa44a720c2465cb386363b8aabe65ad07ec56180737af76dfeeb767279ec9394ca38e14cda454381b0cbc63ec507d23668dc35b4e87c7f7f34ab766ef47d2550b739eeeb8d7438b7bf1650c1948608662083d3476e7ccb6b5950cd296a906eb848ad3c7b2240fba3c2da7b758d4f69c11eb6f088ec970ba99161b6cf2d005500dcef50dd0a4cd2dcc17e45df1676dcb336a11a61c69df7a0299b0150c672d25c0000000000f5313c00000000000029eefffffff800000000685da13200000000685da1310000000000f48092000000000000327c0c8521e9149ebd03d242a28513587209fc897fcd4f0837eb7205f1ff2f8a85c38545159f8bcd96c5a8520fe95992c3009a1f142c3edb4c6ac32ca8b7c65c4dd54a3e6ddcf97519652cc943d221073d408ff35932e82ccb7f31363b8c5ed74bb4427eb38294db66582a07fab06a925ee19a30b1d7adfa5770c67216e09e91e4b4e2873ec7a1c965447651daef3804bbcd5cdc6fc68f6f78fffdfe10e868dd76ec3b90d0ef4ecfcbde0ae70bb4915d3323514e4960e0c433b584f16cbe71c188eb21f1b8757d234f47b65e58e097e02e5878f5a03fa9a0e7ab5121003ca6da7b758d4f69c11eb6f088ec970ba99161b6cf2d005500e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43000009c848f3505900000000c1f3e0a6fffffff800000000685da13200000000685da131000009c50dfd206000000000da8e7bd40c4a04cf3f18982a956e4b78eb688c6b267f35a3b0a2b60e1e43b60f3f795a0c3df0c25491448bb0380fd8bf3adc884a05f916233444c0c983b904d7218a0764ffc479717d95108b774bbb2a91c72cc244791f131402d94dc7a02dde265e5b0104028bee292d4499f4c9d17c2b3ef470823ad4c7d4edfb96a69446f036f75ca139ad1e40386a8c798751a71a7404bbcd5cdc6fc68f6f78fffdfe10e868dd76ec3b90d0ef4ecfcbde0ae70bb4915d3323514e4960e0c433b584f16cbe71c188eb21f1b8757d234f47b65e58e097e02e5878f5a03fa9a0e7ab5121003ca6da7b758d4f69c11eb6f088ec970ba99161b6cf2d005500ff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace00000038b2e15b360000000006805555fffffff800000000685da13200000000685da1310000003890b47490000000000738fe230c22aca210d9b6caa4de0eaba2bbbdd9050528d31e59e2614d1dd6f993bf7c3eb6bacef91af7e89cee5fc28ef6b4db232dc74e4ddd84574bd3277b5e817d53a5d536ac74985215a60f8ce21bada965e87dc9992132d1f4687e53ea48eb00d6cab9ef1504040b9ee8c5dbb1d69b2e62d3de6bdfd44053e76eadd3e04143077b42e6707b300ffcf813db02c755354caad76063a2a18cc4ab78619720d951a56501d7f7054548b74c5a083cc3e92fa90542a4727f353f0459cf730dba39dd350f8346a61c1f1a92e2b6555e58e097e02e5878f5a03fa9a0e7ab5121003ca6da7b758d4f69c11eb6f088ec970ba99161b6cf2d005500ef0d8b6fda2ceba41da15d4095d1da392a0d2f8ed0c6c7bc0f4cfac8c280b56d000000034edcc9b40000000000627a4cfffffff800000000685da13200000000685da131000000034deab25800000000007308420c3a3dbd5d508dba3a7044a96a74a385f93a9cb335351a93cc6303841e26560b966e3e00daba9c476406b6e73732cf8d89ce818384968b7180be4f8ab8db41173d53eba3e437e32ed880d3a7f0372e90d8c546177ba9e773d3801b062dad0fba314055a83d49546cd3f312b1648113e34c4701f0ecdc6cc4f54ab5f4af6af9b8cca6d5d8f888910d3177d3e3064caad76063a2a18cc4ab78619720d951a56501d7f7054548b74c5a083cc3e92fa90542a4727f353f0459cf730dba39dd350f8346a61c1f1a92e2b6555e58e097e02e5878f5a03fa9a0e7ab5121003ca6da7b758d4f69c11eb6f088ec970ba99161b6cf2d0055002b89b9dc8fdf9f34709a5b106b472f0f39bb6ca9ce04b0fd7f2e971688e2e53b0000000005f6543c000000000000d7cefffffff800000000685da13200000000685da1310000000005f6533a000000000000e5000cf48d425c2ca914c24e8f91d833cbe15577b7fdcac2dc4777131a00095c3160d38c88c2d2682f269be1aebd0299cd8977c1eadbca0ea1b1550491cf27a7d60d4c9a64b5fe20663a305ed1334f51a2e65e531513d1eae661cac086286355da3b5f7eb5e436a57905d3891bfe95751c477c7fd50e92b664e21f47a489c4683d513fed2fd44fe53b7f2a4cfbad189f212a7338b6bb062dc3a07e35c23e5f3cc2cf3adee2b0b8a109fb84871eba76558893b04511688ec7a7335f8ef841929cc9d8c36fad07acff0f2eb67ccb6b5950cd296a906eb848ad3c7b2240fba3c2da7b758d4f69c11eb6f088ec970ba99161b6cf2d005500eaa020c61cc479712813461ce153894a96a6c00b21ed0cfc2798d1f9a9e9c94a0000000005f5c48d0000000000010afafffffff800000000685da13200000000685da1310000000005f5c08300000000000116b70ca76a5288f572a574ac0480b79dfa6e70ce4c192d4241a2ae126b8e7cd9897fbbe2bc526be857e12b6b3c5f7fd03ee902e326d638da80a437918e4e13ffbdb11999615d15cf2d7bd1cbd458ed3e17931abf87c94ac70a101f03153af3070684483345c40ecd94e8ae842bb0de90ec8755ff04f254ac1172d59446f036f75ca139ad1e40386a8c798751a71a7404bbcd5cdc6fc68f6f78fffdfe10e868dd76ec3b90d0ef4ecfcbde0ae70bb4915d3323514e4960e0c433b584f16cbe71c188eb21f1b8757d234f47b65e58e097e02e5878f5a03fa9a0e7ab5121003ca6da7b758d4f69c11eb6f088ec970ba99161b6cf2d0055002a01deaec9e51a579277b34b122399984d0bbf57e2458a7e42fecd2829867a0d00000000035180e5000000000000be92fffffff800000000685da13200000000685da13100000000034f1055000000000000ad870c9d2096c5fba4d22f3267caad17d1796dc6cda75a4124eed215f38656a40587554d8ed589012f75d7ac58d8bc174b4bbe4d82b1e9dc0c48db44bed072364bb6c88b0b7a662cc5631f73ea32b4eef8b7ef531513d1eae661cac086286355da3b5f7eb5e436a57905d3891bfe95751c477c7fd50e92b664e21f47a489c4683d513fed2fd44fe53b7f2a4cfbad189f212a7338b6bb062dc3a07e35c23e5f3cc2cf3adee2b0b8a109fb84871eba76558893b04511688ec7a7335f8ef841929cc9d8c36fad07acff0f2eb67ccb6b5950cd296a906eb848ad3c7b2240fba3c2da7b758d4f69c11eb6f088ec970ba99161b6cf2d0055008ac0c70fff57e9aefdf5edf44b51d62c2d433653cbb2cf5cc06bb115af04d221000000004e23fc8700000000000d821afffffff800000000685da13200000000685da131000000004dfefcc0000000000010082d0c1465ea881c49e7597a11d887f6a699946296f2f47dc6ed53a3c5371f55cb015c29d48d5318983ec42ed0a6531f4dbb53a3d34288a94c986128880153e1ad6cff47ad86d259d10caadef6be572c77bcdd74af18c919a68c66de0ab77540236032382029d652d2d7eebd811fab53dd0bceaf8e0cf85ba533f931e93b73cb337fa869419ca5d5b9bf4f5df6d8b8e55a6de0372a79d5d1978bc68fd031d7cf9afe9d07d23668dc35b4e87c7f7f34ab766ef47d2550b739eeeb8d7438b7bf1650c1948608662083d3476e7ccb6b5950cd296a906eb848ad3c7b2240fba3c2da7b758d4f69c11eb6f088ec970ba99161b6cf2d00550078d185a741d07edb3412b09008b7c5cfb9bbbd7d568bf00ba737b456ba1715010000000028e2ed7f00000000000a05b9fffffff800000000685da13200000000685da13100000000289168ce0000000000088e440cbf25df85707ca12c545de1eadbbd756de4531719146f3a72dbb77f5e57cf3a75c46879d2209ebbf5995b270cfd29322e107e9b65c9eb14980dbd64f82818f3c316f640b89d349242d579d0c7c81fc40df2728c160f475e37af75dbfc48db0cd89018e97537074a713777f340df1b799f02840faa44a720c2465cb386363b8aabe65ad07ec56180737af76dfeeb767279ec9394ca38e14cda454381b0cbc63ec507d23668dc35b4e87c7f7f34ab766ef47d2550b739eeeb8d7438b7bf1650c1948608662083d3476e7ccb6b5950cd296a906eb848ad3c7b2240fba3c2da7b758d4f69c11eb6f088ec970ba99161b6cf2d005500dcef50dd0a4cd2dcc17e45df1676dcb336a11a61c69df7a0299b0150c672d25c0000000000f5313c00000000000029eefffffff800000000685da13200000000685da1310000000000f48092000000000000327c0c8521e9149ebd03d242a28513587209fc897fcd4f0837eb7205f1ff2f8a85c38545159f8bcd96c5a8520fe95992c3009a1f142c3edb4c6ac32ca8b7c65c4dd54a3e6ddcf97519652cc943d221073d408ff35932e82ccb7f31363b8c5ed74bb4427eb38294db66582a07fab06a925ee19a30b1d7adfa5770c67216e09e91e4b4e2873ec7a1c965447651daef3804bbcd5cdc6fc68f6f78fffdfe10e868dd76ec3b90d0ef4ecfcbde0ae70bb4915d3323514e4960e0c433b584f16cbe71c188eb21f1b8757d234f47b65e58e097e02e5878f5a03fa9a0e7ab5121003ca6da7b758d4f69c11eb6f088ec970ba99161b6cf2d005500e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43000009c848f3505900000000c1f3e0a6fffffff800000000685da13200000000685da131000009c50dfd206000000000da8e7bd40c4a04cf3f18982a956e4b78eb688c6b267f35a3b0a2b60e1e43b60f3f795a0c3df0c25491448bb0380fd8bf3adc884a05f916233444c0c983b904d7218a0764ffc479717d95108b774bbb2a91c72cc244791f131402d94dc7a02dde265e5b0104028bee292d4499f4c9d17c2b3ef470823ad4c7d4edfb96a69446f036f75ca139ad1e40386a8c798751a71a7404bbcd5cdc6fc68f6f78fffdfe10e868dd76ec3b90d0ef4ecfcbde0ae70bb4915d3323514e4960e0c433b584f16cbe71c188eb21f1b8757d234f47b65e58e097e02e5878f5a03fa9a0e7ab5121003ca6da7b758d4f69c11eb6f088ec970ba99161b6cf2d005500ff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace00000038b2e15b360000000006805555fffffff800000000685da13200000000685da1310000003890b47490000000000738fe230c22aca210d9b6caa4de0eaba2bbbdd9050528d31e59e2614d1dd6f993bf7c3eb6bacef91af7e89cee5fc28ef6b4db232dc74e4ddd84574bd3277b5e817d53a5d536ac74985215a60f8ce21bada965e87dc9992132d1f4687e53ea48eb00d6cab9ef1504040b9ee8c5dbb1d69b2e62d3de6bdfd44053e76eadd3e04143077b42e6707b300ffcf813db02c755354caad76063a2a18cc4ab78619720d951a56501d7f7054548b74c5a083cc3e92fa90542a4727f353f0459cf730dba39dd350f8346a61c1f1a92e2b6555e58e097e02e5878f5a03fa9a0e7ab5121003ca6da7b758d4f69c11eb6f088ec970ba99161b6cf2d"
+      ]
+    },
+    "parsed": [
+      {
+        "id": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
+        "price": {
+          "price": "10755822014553",
+          "conf": "3253985446",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "10741947900000",
+          "conf": "3666770900",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "ff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace",
+        "price": {
+          "price": "243519281974",
+          "conf": "109073749",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "242945914000",
+          "conf": "121175587",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "ef0d8b6fda2ceba41da15d4095d1da392a0d2f8ed0c6c7bc0f4cfac8c280b56d",
+        "price": {
+          "price": "14207994292",
+          "conf": "6453836",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "14192128600",
+          "conf": "7538754",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "2b89b9dc8fdf9f34709a5b106b472f0f39bb6ca9ce04b0fd7f2e971688e2e53b",
+        "price": {
+          "price": "100029500",
+          "conf": "55246",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "100029242",
+          "conf": "58624",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "eaa020c61cc479712813461ce153894a96a6c00b21ed0cfc2798d1f9a9e9c94a",
+        "price": {
+          "price": "99992717",
+          "conf": "68346",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "99991683",
+          "conf": "71351",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "2a01deaec9e51a579277b34b122399984d0bbf57e2458a7e42fecd2829867a0d",
+        "price": {
+          "price": "55673061",
+          "conf": "48786",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "55513173",
+          "conf": "44423",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "8ac0c70fff57e9aefdf5edf44b51d62c2d433653cbb2cf5cc06bb115af04d221",
+        "price": {
+          "price": "1310981255",
+          "conf": "885274",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "1308556480",
+          "conf": "1050669",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "78d185a741d07edb3412b09008b7c5cfb9bbbd7d568bf00ba737b456ba171501",
+        "price": {
+          "price": "685960575",
+          "conf": "656825",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "680618190",
+          "conf": "560708",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "dcef50dd0a4cd2dcc17e45df1676dcb336a11a61c69df7a0299b0150c672d25c",
+        "price": {
+          "price": "16068924",
+          "conf": "10734",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "16023698",
+          "conf": "12924",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
+        "price": {
+          "price": "10755822014553",
+          "conf": "3253985446",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "10741947900000",
+          "conf": "3666770900",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "ff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace",
+        "price": {
+          "price": "243519281974",
+          "conf": "109073749",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "242945914000",
+          "conf": "121175587",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "ef0d8b6fda2ceba41da15d4095d1da392a0d2f8ed0c6c7bc0f4cfac8c280b56d",
+        "price": {
+          "price": "14207994292",
+          "conf": "6453836",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "14192128600",
+          "conf": "7538754",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "2b89b9dc8fdf9f34709a5b106b472f0f39bb6ca9ce04b0fd7f2e971688e2e53b",
+        "price": {
+          "price": "100029500",
+          "conf": "55246",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "100029242",
+          "conf": "58624",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "eaa020c61cc479712813461ce153894a96a6c00b21ed0cfc2798d1f9a9e9c94a",
+        "price": {
+          "price": "99992717",
+          "conf": "68346",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "99991683",
+          "conf": "71351",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "2a01deaec9e51a579277b34b122399984d0bbf57e2458a7e42fecd2829867a0d",
+        "price": {
+          "price": "55673061",
+          "conf": "48786",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "55513173",
+          "conf": "44423",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "8ac0c70fff57e9aefdf5edf44b51d62c2d433653cbb2cf5cc06bb115af04d221",
+        "price": {
+          "price": "1310981255",
+          "conf": "885274",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "1308556480",
+          "conf": "1050669",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "78d185a741d07edb3412b09008b7c5cfb9bbbd7d568bf00ba737b456ba171501",
+        "price": {
+          "price": "685960575",
+          "conf": "656825",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "680618190",
+          "conf": "560708",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "dcef50dd0a4cd2dcc17e45df1676dcb336a11a61c69df7a0299b0150c672d25c",
+        "price": {
+          "price": "16068924",
+          "conf": "10734",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "16023698",
+          "conf": "12924",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
+        "price": {
+          "price": "10755822014553",
+          "conf": "3253985446",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "10741947900000",
+          "conf": "3666770900",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      },
+      {
+        "id": "ff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace",
+        "price": {
+          "price": "243519281974",
+          "conf": "109073749",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "ema_price": {
+          "price": "242945914000",
+          "conf": "121175587",
+          "expo": -8,
+          "publish_time": 1750966578
+        },
+        "metadata": {
+          "slot": 225973368,
+          "proof_available_time": 1750966579,
+          "prev_publish_time": 1750966577
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "fetchedAt": 1750966576600,
+    "apiEndpoint": "https://hermes.pyth.network/v2/updates/price/latest",
+    "dataFormat": "Pyth Accumulator Update"
+  }
+}

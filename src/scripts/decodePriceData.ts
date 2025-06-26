@@ -97,8 +97,8 @@ async function decodePriceData() {
 
     // Display summary of decoded feeds
     console.log('\n📋 Decoded price feeds summary:');
-    outputData.decodedUpdates.forEach((update, index) => {
-      console.log(`   ${index}: ${update.symbol} = $${update.readablePrice.toFixed(2)} (±$${update.readableConfidence.toFixed(2)})`);
+    outputData.decodedUpdates.forEach((update: any, index: number) => {
+      console.log(`   ${index}: ${update.symbol} = ${update.readablePrice.toFixed(2)} (±${update.readableConfidence.toFixed(2)})`);
     });
 
     // Display technical details
