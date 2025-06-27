@@ -174,13 +174,13 @@ async function validateProduction() {
     const originalUpdates = fetchData.productionData.individualUpdates;
     let crossReferenceValid = true;
     
-    selectedFeeds.forEach((selected: any) => {
-      const original = originalUpdates.find((u: any) => u.feedId === selected.feedId);
+    selectedFeeds.forEach((feed: any) => {
+      const original = originalUpdates.find((u: any) => u.feedId === feed.feedId);
       if (!original) {
-        console.error(`❌ Selected feed ${selected.symbol} not found in original data`);
+        console.error(`❌ Selected feed ${feed.symbol} not found in original data`);
         crossReferenceValid = false;
-      } else if (original.updateData !== selected.vaaData) {
-        console.error(`❌ VAA data mismatch for ${selected.symbol}`);
+      } else if (original.updateData !== feed.vaaData) {
+        console.error(`❌ VAA data mismatch for ${feed.symbol}`);
         crossReferenceValid = false;
       }
     });
@@ -203,7 +203,7 @@ async function validateProduction() {
     console.log('\n📋 Final selected feeds for on-chain submission:');
     selectedFeeds.forEach((feed: any, index: number) => {
       const age = Math.round((Date.now() - feed.publishTime * 1000) / (1000 * 60));
-      console.log(`   ${index + 1}. ${feed.symbol}: $${feed.price.toFixed(2)} ±$${feed.confidence.toFixed(2)}`);
+      console.log(`   ${index + 1}. ${feed.symbol}: ${feed.price.toFixed(2)} ±${feed.confidence.toFixed(2)}`);
       console.log(`      VAA: ${feed.vaaData.slice(0, 20)}...${feed.vaaData.slice(-20)} (${feed.vaaSize} chars)`);
       console.log(`      Age: ${age} minutes | Valid: ${feed.isValidVAA ? '✅' : '❌'}`);
     });

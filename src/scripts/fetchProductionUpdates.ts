@@ -43,10 +43,10 @@ async function fetchProductionUpdates() {
         individualUpdates,
         batchBinaryData, // Combined binary from Hermes
         validationInfo: {
-          allUpdatesValid: individualUpdates.every(u => 
+          allUpdatesValid: individualUpdates.every((u: any) => 
             ProductionPythClient.validateUpdateData(u.updateData)
           ),
-          totalVAASize: individualUpdates.reduce((sum, u) => sum + u.updateData.length, 0)
+          totalVAASize: individualUpdates.reduce((sum: number, u: any) => sum + u.updateData.length, 0)
         }
       },
       metadata: {
@@ -75,20 +75,20 @@ async function fetchProductionUpdates() {
     console.log(`📊 Successfully fetched ${individualUpdates.length} individual VAAs`);
     
     // Display validation info
-    const validUpdates = individualUpdates.filter(u => 
+    const validUpdates = individualUpdates.filter((u: any) => 
       ProductionPythClient.validateUpdateData(u.updateData)
     );
     console.log(`✅ Valid VAAs: ${validUpdates.length}/${individualUpdates.length}`);
     
     // Display total data size
-    const totalSize = individualUpdates.reduce((sum, u) => sum + u.updateData.length, 0);
+    const totalSize = individualUpdates.reduce((sum: number, u: any) => sum + u.updateData.length, 0);
     console.log(`💾 Total VAA data size: ${totalSize} characters (${totalSize / 2} bytes)`);
 
     // Display sample of fetched data
     console.log('\n📋 Sample of fetched price data:');
-    individualUpdates.slice(0, 5).forEach((update, index) => {
+    individualUpdates.slice(0, 5).forEach((update: any, index: number) => {
       const vaaSize = update.updateData.length;
-      console.log(`   ${index + 1}. ${update.symbol}: $${update.priceInfo.price.toFixed(2)} (VAA: ${vaaSize} chars)`);
+      console.log(`   ${index + 1}. ${update.symbol}: ${update.priceInfo.price.toFixed(2)} (VAA: ${vaaSize} chars)`);
     });
 
     // Display key differences from demo version

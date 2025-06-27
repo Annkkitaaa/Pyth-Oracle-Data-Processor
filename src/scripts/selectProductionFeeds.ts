@@ -31,7 +31,7 @@ async function selectProductionFeeds() {
       if (update) {
         const vaaSize = update.updateData.length;
         const isValid = ProductionPythClient.validateUpdateData(update.updateData);
-        console.log(`   ${i + 1}. [${index}] ${update.symbol} - $${update.priceInfo.price.toFixed(2)} (VAA: ${vaaSize} chars) ${isValid ? '✅' : '❌'}`);
+        console.log(`   ${i + 1}. [${index}] ${update.symbol} - ${update.priceInfo.price.toFixed(2)} (VAA: ${vaaSize} chars) ${isValid ? '✅' : '❌'}`);
       } else {
         console.warn(`   ⚠️  Index ${index} not found in production data`);
       }
@@ -69,7 +69,7 @@ async function selectProductionFeeds() {
     };
 
     // Calculate total size and gas estimates
-    const totalVAASize = selectedUpdates.reduce((sum, u) => sum + u.updateData.length, 0);
+    const totalVAASize = selectedUpdates.reduce((sum: number, u: any) => sum + u.updateData.length, 0);
     const estimatedGas = ProductionPythClient.estimateGasCost(selectedCount);
 
     // Prepare comprehensive output data
