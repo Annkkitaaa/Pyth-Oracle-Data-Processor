@@ -97,9 +97,10 @@ async function reencodeSelectedFeeds() {
       selectedFeedCount: encodedData.selectedCount,
       selectedIndices: SELECTED_ASSET_INDICES,
       selectedFeeds: encodedData.selectedUpdates.map((update: any, index: number) => {
-        const originalUpdate = allUpdates[SELECTED_ASSET_INDICES[index]];
+        const selectedIndex = SELECTED_ASSET_INDICES[index];
+        const originalUpdate = selectedIndex !== undefined ? allUpdates[selectedIndex] : undefined;
         return {
-          index: SELECTED_ASSET_INDICES[index],
+          index: selectedIndex || index,
           feedId: update.feedId,
           symbol: originalUpdate?.symbol || 'Unknown',
           assetType: originalUpdate?.assetType || 'unknown',
@@ -147,8 +148,8 @@ async function reencodeSelectedFeeds() {
 
     // Display selected feeds summary
     console.log('\n📋 Re-encoded feeds summary:');
-    outputData.selectedFeeds.forEach((feed, index) => {
-      console.log(`   ${index + 1}. ${feed.symbol} = $${feed.readablePrice.toFixed(2)} (±$${feed.readableConfidence.toFixed(2)})`);
+    outputData.selectedFeeds.forEach((feed: any, index: number) => {
+      console.log(`   ${index + 1}. ${feed.symbol} = ${feed.readablePrice.toFixed(2)} (±${feed.readableConfidence.toFixed(2)})`);
     });
 
     // Display technical details
