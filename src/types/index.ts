@@ -35,9 +35,9 @@ export interface DecodedPriceUpdate {
   slot: number;
 }
 
-export interface ProcessingResult {
+export interface ProcessingResult<T = any> {
   success: boolean;
-  data?: any;
+  data?: T;
   error?: string;
   timestamp: number;
   metadata?: {
@@ -83,4 +83,26 @@ export interface ApiConfig {
   timeout: number;
   retryAttempts: number;
   retryDelay: number;
+}
+
+// Production API types
+export interface PythPriceUpdate {
+  feedId: string;
+  vaa: string; // Base64 encoded VAA
+  publishTime: number;
+  price: number;
+  confidence: number;
+  expo: number;
+}
+
+export interface IndividualPriceUpdate {
+  feedId: string;
+  symbol: string;
+  updateData: string; // Hex-encoded binary data for on-chain submission
+  priceInfo: {
+    price: number;
+    confidence: number;
+    expo: number;
+    publishTime: number;
+  };
 }

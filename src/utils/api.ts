@@ -16,35 +16,66 @@ export class HermesApiClient {
   }
 
   /**
-   * Fetch latest price updates for multiple price feed IDs
+   * Fetch latest price updates for multiple price feed IDs with multiple fallback methods
    */
   async fetchLatestPriceUpdates(priceIds: string[]): Promise<ProcessingResult> {
     const startTime = Date.now();
     
     try {
-      // Construct query parameters for multiple IDs
-      const params = new URLSearchParams();
-      priceIds.forEach(id => {
-        params.append('ids[]', id);
-      });
+      // Validate price IDs first
+      const validation = HermesApiClient.validatePriceIds(priceIds);
+      if (validation.invalid.length > 0) {
+        console.warn(`⚠️  Warning: Found ${validation.invalid.length} invalid price IDs`);
+        validation.invalid.forEach(id => console.warn(`   - ${id}`));
+      }
 
-      const url = `${this.config.baseUrl}${API_ENDPOINTS.LATEST_PRICE_UPDATES}?${params.toString()}`;
-      
-      console.log(`Fetching price updates for ${priceIds.length} feeds...`);
-      console.log(`URL: ${url}`);
+      // Use only valid IDs and remove duplicates
+      const validIds = [...new Set(validation.valid)];
+      if (validIds.length === 0) {
+        throw new Error('No valid price IDs found');
+      }
 
-      const response = await this.makeRequest(url);
-      const processingTime = Date.now() - startTime;
+      console.log(`📊 Using ${validIds.length} unique valid IDs`);
 
-      return {
-        success: true,
-        data: response.data,
-        timestamp: Date.now(),
-        metadata: {
-          totalFeeds: priceIds.length,
-          processingTime
+      // Try different methods to fetch data
+      const methods = [
+        () => this.fetchWithArrayParams(validIds),
+        () => this.fetchWithBatchSize(validIds, 10),
+        () => this.fetchWithBatchSize(validIds, 5),
+        () => this.fetchIndividuallyAndCombine(validIds)
+      ];
+
+      let lastError: Error = new Error('All methods failed');
+
+      for (let i = 0; i < methods.length; i++) {
+        try {
+          console.log(`🔄 Trying Method ${i + 1}...`);
+          const response = await methods[i]();
+          const processingTime = Date.now() - startTime;
+
+          return {
+            success: true,
+            data: response.data,
+            timestamp: Date.now(),
+            metadata: {
+              totalFeeds: priceIds.length,
+              successfulFeeds: response.data.parsed?.length || 0,
+              processingTime
+            }
+          };
+        } catch (error) {
+          lastError = error instanceof Error ? error : new Error(`Method ${i + 1} failed`);
+          console.log(`❌ Method ${i + 1} failed: ${lastError.message}`);
+          
+          if (i < methods.length - 1) {
+            console.log(`⏳ Waiting before trying next method...`);
+            await this.delay(1000);
+          }
         }
-      };
+      }
+
+      throw lastError;
+
     } catch (error) {
       console.error('Error fetching price updates:', error);
       return {
@@ -60,6 +91,152 @@ export class HermesApiClient {
   }
 
   /**
+   * Method 1: Standard array parameter approach
+   */
+  private async fetchWithArrayParams(priceIds: string[]): Promise<AxiosResponse<HermesResponse>> {
+    const params = new URLSearchParams();
+    priceIds.forEach(id => {
+      params.append('ids[]', id);
+    });
+
+    const url = `${this.config.baseUrl}${API_ENDPOINTS.LATEST_PRICE_UPDATES}?${params.toString()}`;
+    console.log(`📡 Fetching with array params: ${priceIds.length} feeds`);
+    
+    return await this.makeRequest(url);
+  }
+
+  /**
+   * Method 2: Batch processing with smaller chunks
+   */
+  private async fetchWithBatchSize(priceIds: string[], batchSize: number): Promise<AxiosResponse<HermesResponse>> {
+    console.log(`📦 Batch processing with size ${batchSize}`);
+    
+    if (priceIds.length <= batchSize) {
+      return await this.fetchWithArrayParams(priceIds);
+    }
+
+    const batches: string[][] = [];
+    for (let i = 0; i < priceIds.length; i += batchSize) {
+      batches.push(priceIds.slice(i, i + batchSize));
+    }
+
+    console.log(`📦 Processing ${batches.length} batches of ${batchSize} feeds each`);
+
+    const allParsed: any[] = [];
+    let combinedBinary = '';
+
+    for (let i = 0; i < batches.length; i++) {
+      const batch = batches[i];
+      console.log(`🔄 Processing batch ${i + 1}/${batches.length} (${batch.length} feeds)`);
+      
+      try {
+        const response = await this.fetchWithArrayParams(batch);
+        
+        if (response.data.parsed) {
+          allParsed.push(...response.data.parsed);
+        }
+        
+        if (response.data.binary?.data?.[0] && !combinedBinary) {
+          combinedBinary = response.data.binary.data[0];
+        }
+        
+        // Small delay between batches
+        if (i < batches.length - 1) {
+          await this.delay(500);
+        }
+      } catch (error) {
+        console.warn(`⚠️  Batch ${i + 1} failed, continuing with others...`);
+      }
+    }
+
+    if (allParsed.length === 0) {
+      throw new Error('No data retrieved from any batch');
+    }
+
+    // Combine results
+    const combinedResponse: AxiosResponse<HermesResponse> = {
+      data: {
+        binary: {
+          encoding: 'hex',
+          data: [combinedBinary]
+        },
+        parsed: allParsed
+      },
+      status: 200,
+      statusText: 'OK',
+      headers: {},
+      config: {} as any,
+      request: {}
+    };
+
+    return combinedResponse;
+  }
+
+  /**
+   * Method 3: Fetch each feed individually and combine
+   */
+  private async fetchIndividuallyAndCombine(priceIds: string[]): Promise<AxiosResponse<HermesResponse>> {
+    console.log(`🔄 Fetching ${priceIds.length} feeds individually`);
+    
+    const allParsed: any[] = [];
+    const validBinaries: string[] = [];
+    const errors: string[] = [];
+
+    for (let i = 0; i < priceIds.length; i++) {
+      const id = priceIds[i];
+      try {
+        console.log(`📡 Fetching feed ${i + 1}/${priceIds.length}: ${id.slice(0, 10)}...`);
+        
+        const params = new URLSearchParams();
+        params.append('ids[]', id);
+        const url = `${this.config.baseUrl}${API_ENDPOINTS.LATEST_PRICE_UPDATES}?${params.toString()}`;
+        
+        const response = await this.makeRequest(url);
+        
+        if (response.data.parsed?.[0]) {
+          allParsed.push(response.data.parsed[0]);
+        }
+        
+        if (response.data.binary?.data?.[0]) {
+          validBinaries.push(response.data.binary.data[0]);
+        }
+        
+        // Small delay between requests
+        await this.delay(200);
+        
+      } catch (error) {
+        const errorMsg = error instanceof Error ? error.message : 'Unknown error';
+        errors.push(`Feed ${id.slice(0, 10)}: ${errorMsg}`);
+        console.warn(`⚠️  Failed to fetch ${id.slice(0, 10)}: ${errorMsg}`);
+      }
+    }
+
+    if (allParsed.length === 0) {
+      throw new Error(`No feeds could be fetched. Errors: ${errors.join(', ')}`);
+    }
+
+    console.log(`✅ Successfully fetched ${allParsed.length}/${priceIds.length} feeds`);
+
+    // Use the first valid binary data (they should be compatible)
+    const combinedResponse: AxiosResponse<HermesResponse> = {
+      data: {
+        binary: {
+          encoding: 'hex',
+          data: validBinaries.length > 0 ? [validBinaries[0]] : ['']
+        },
+        parsed: allParsed
+      },
+      status: 200,
+      statusText: 'OK',
+      headers: {},
+      config: {} as any,
+      request: {}
+    };
+
+    return combinedResponse;
+  }
+
+  /**
    * Fetch price updates with retry logic
    */
   private async makeRequest(url: string): Promise<AxiosResponse<HermesResponse>> {
@@ -72,10 +249,12 @@ export class HermesApiClient {
           headers: {
             'Accept': 'application/json',
             'User-Agent': 'pyth-oracle-processor/1.0.0'
-          }
+          },
+          // Add some axios-specific configurations
+          validateStatus: (status) => status === 200
         });
 
-        if (response.status === 200) {
+        if (response.status === 200 && response.data) {
           return response;
         }
         

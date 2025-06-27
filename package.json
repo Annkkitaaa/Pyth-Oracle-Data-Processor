@@ -50,10 +50,8 @@
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
-    "@pythnetwork/hermes-client": "^1.0.0",
     "axios": "^1.7.7",
-    "dotenv": "^16.4.5",
-    "ethers": "^6.13.4"
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",

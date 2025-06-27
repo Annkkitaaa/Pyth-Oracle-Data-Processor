@@ -6,7 +6,10 @@ export const API_ENDPOINTS = {
   PRICE_FEEDS: '/v2/price_feeds'
 } as const;
 
-export const SELECTED_ASSET_INDICES = [0, 4, 8, 12, 16]; // Indices for 5 assets to re-encode
+// Select 5 feeds from different asset types (we have 20 total feeds, indices 0-19)
+// Updated to reflect the new feed arrangement:
+// 0: BTC/USD (crypto), 5: ADA/USD (crypto), 11: TSLA/USD (equity), 15: XAU/USD (commodity), 18: EUR/USD (forex)
+export const SELECTED_ASSET_INDICES = [0, 5, 11, 15, 18];
 
 export const REQUEST_CONFIG = {
   TIMEOUT: 30000, // 30 seconds
