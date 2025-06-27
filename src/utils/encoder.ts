@@ -18,7 +18,7 @@ export class PythDataEncoder {
       // Select the specified updates
       const selectedUpdates = selectedIndices
         .map(index => allUpdates[index])
-        .filter(Boolean);
+        .filter((update): update is DecodedPriceUpdate => update !== undefined);
 
       if (selectedUpdates.length !== selectedIndices.length) {
         throw new Error(`Could not find all requested updates. Found ${selectedUpdates.length} of ${selectedIndices.length}`);
