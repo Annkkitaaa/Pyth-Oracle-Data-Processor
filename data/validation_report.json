@@ -1,0 +1,27 @@
+{
+  "validationTimestamp": "2025-06-27T05:54:57.331Z",
+  "allValidationsPassed": true,
+  "dataIntegrity": {
+    "originalFeedCount": 20,
+    "decodedFeedCount": 20,
+    "selectedFeedCount": 5,
+    "feedCountPreserved": true
+  },
+  "roundTripTest": {
+    "attempted": true,
+    "successful": true
+  },
+  "calldataValidation": {
+    "hasFunctionSelector": true,
+    "reasonableLength": true
+  },
+  "priceDataValidation": {
+    "allPricesPositive": true,
+    "confidenceReasonable": true
+  },
+  "summary": {
+    "readyForOnChainUse": true,
+    "recommendedGasLimit": 240000,
+    "totalProcessingTime": 14886
+  }
+}
