@@ -39,10 +39,14 @@ export class ProductionPythClient {
       console.log(`🔄 Fetching individual price updates for ${priceIds.length} feeds...`);
       
       // Get latest price updates - this returns VAAs for each feed
-      const priceUpdates = await this.client.getLatestPriceUpdates(priceIds);
+      const priceUpdates: any = await this.client.getLatestPriceUpdates(priceIds);
       
       if (!priceUpdates || !priceUpdates.binary || !priceUpdates.binary.data) {
         throw new Error('No price update data received from Hermes');
+      }
+
+      if (!priceUpdates.parsed || priceUpdates.parsed.length === 0) {
+        throw new Error('No parsed price data received from Hermes');
       }
 
       // Extract individual updates
@@ -50,6 +54,11 @@ export class ProductionPythClient {
       
       for (let i = 0; i < priceIds.length && i < priceUpdates.parsed.length; i++) {
         const parsed = priceUpdates.parsed[i];
+        if (!parsed || !parsed.id || !parsed.price) {
+          console.warn(`Skipping invalid parsed data at index ${i}`);
+          continue;
+        }
+        
         const feedId = parsed.id;
         
         // Each price update has its own binary data that can be submitted on-chain
@@ -106,7 +115,7 @@ export class ProductionPythClient {
   private async getIndividualUpdateData(feedId: string): Promise<string> {
     try {
       // Fetch update for just this one feed
-      const singleUpdate = await this.client.getLatestPriceUpdates([feedId]);
+      const singleUpdate: any = await this.client.getLatestPriceUpdates([feedId]);
       
       if (singleUpdate?.binary?.data?.[0]) {
         // Convert to hex format for on-chain submission
@@ -142,7 +151,9 @@ export class ProductionPythClient {
       
       const selectedUpdates = selectedIndices
         .map(index => allUpdates[index])
-        .filter(update => update && update.updateData !== '0x'); // Filter out failed updates
+        .filter((update): update is IndividualPriceUpdate => 
+          update !== undefined && update.updateData !== '0x'
+        );
 
       if (selectedUpdates.length === 0) {
         throw new Error('No valid updates selected');
