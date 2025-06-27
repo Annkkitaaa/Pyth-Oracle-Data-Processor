@@ -1,6 +1,6 @@
 # Pyth Oracle Data Processor
 
-A TypeScript application for fetching, processing, and preparing Pyth Network oracle price data for on-chain submission. This tool provides comprehensive oracle data management capabilities with both educational demonstrations and production-ready implementations.
+A TypeScript application for fetching, processing, and preparing Pyth Network oracle price data for on-chain submission. This tool provides comprehensive oracle data management capabilities with both demo and production implementations.
 
 ## Overview
 
@@ -11,20 +11,26 @@ The Pyth Oracle Data Processor interacts with the Pyth Network's Hermes API to f
 The application implements a dual-pipeline architecture:
 
 ### Demo Pipeline
-An educational implementation that demonstrates oracle data processing concepts including binary format exploration, API integration patterns, and data validation techniques.
+Demonstrates oracle data processing concepts by fetching price updates, decoding binary data structures, and re-encoding selected feeds. This pipeline shows the fundamental workflows of oracle data manipulation and validation.
 
 ### Production Pipeline  
-A production-ready implementation that fetches individual Wormhole-signed VAAs (Verified Action Approvals) suitable for direct submission to Pyth smart contracts across all supported blockchain networks.
+Provides production-ready implementation with additional features including individual Wormhole-signed VAAs (Verified Action Approvals), cryptographic validation, and direct smart contract compatibility across all supported blockchain networks.
 
 ## Features
 
 ### Core Functionality
 - Fetches price updates for 20 diverse assets across multiple asset classes
 - Processes and validates oracle data through multiple encoding/decoding stages
-- Generates production-ready VAAs with Wormhole guardian signatures
-- Creates optimized calldata for smart contract `updatePriceFeeds()` functions
+- Generates optimized calldata for smart contract `updatePriceFeeds()` functions
 - Implements comprehensive error handling with multiple fallback mechanisms
 - Provides detailed validation and gas estimation
+
+### Production Features
+- **Wormhole-signed VAAs**: Individual VAAs with guardian signatures
+- **Cryptographic Verification**: Full validation of VAA authenticity
+- **Direct Smart Contract Submission**: Ready for on-chain deployment
+- **Gas Optimization**: Accurate cost estimation and efficiency
+- **Cross-chain Compatibility**: Works on all Pyth-supported networks
 
 ### Asset Coverage
 - **Cryptocurrencies (11)**: BTC, ETH, SOL, USDT, USDC, ADA, LINK, UNI, DOGE, AVAX, BNB
@@ -80,7 +86,7 @@ MAX_FEEDS=20
 ## Usage
 
 ### Demo Pipeline
-The demo pipeline demonstrates oracle data processing concepts and binary format exploration:
+Demonstrates oracle data processing workflows and binary format handling:
 
 ```bash
 # Individual steps
@@ -93,10 +99,10 @@ npm run validate    # Validate processing pipeline
 npm run process-all # Execute all demo steps sequentially
 ```
 
-**Output**: Educational demonstration of oracle data processing with conceptual encoding/decoding.
+**Output**: Processed oracle data with demonstration of encoding/decoding workflows.
 
 ### Production Pipeline  
-The production pipeline generates deployment-ready VAAs for smart contract integration:
+Generates deployment-ready VAAs with additional production features:
 
 ```bash
 # Individual steps
@@ -128,7 +134,7 @@ pyth-oracle-data-processor/
 │   │   └── validateProduction.ts      # Production: Comprehensive validation
 │   ├── utils/                     # Core business logic
 │   │   ├── api.ts                # Demo API client with retry logic
-│   │   ├── decoder.ts            # Binary data decoder (educational)
+│   │   ├── decoder.ts            # Binary data decoder
 │   │   ├── encoder.ts            # Demo re-encoder for concepts
 │   │   └── productionApi.ts      # Production VAA client
 │   ├── types/                     # TypeScript type definitions
@@ -155,20 +161,20 @@ pyth-oracle-data-processor/
 
 | Aspect | Demo Pipeline | Production Pipeline |
 |--------|---------------|-------------------|
-| **Purpose** | Educational demonstration | Production deployment |
-| **Output Format** | Conceptual encoding | Wormhole-signed VAAs |
-| **Smart Contract Compatibility** | Demonstration only | Direct submission ready |
+| **Purpose** | Workflow demonstration | Production deployment |
+| **Output Format** | Processed data | Wormhole-signed VAAs |
+| **Smart Contract Compatibility** | Basic compatibility | Direct submission ready |
 | **Cryptographic Signatures** | None | Wormhole guardian signatures |
-| **Gas Estimation** | Conceptual | Accurate on-chain estimates |
+| **Gas Estimation** | Basic estimates | Accurate on-chain estimates |
 | **Validation Level** | Structure validation | Cryptographic verification |
-| **Use Case** | Learning and exploration | Real-world deployment |
+| **Use Case** | Process exploration | Real-world deployment |
 
 ## API Reference
 
 ### Core Classes
 
 #### `HermesApiClient`
-Demo API client for educational oracle data exploration.
+Demo API client for oracle data processing workflows.
 
 ```typescript
 const client = new HermesApiClient({
@@ -181,7 +187,7 @@ const result = await client.fetchLatestPriceUpdates(priceIds);
 ```
 
 #### `ProductionPythClient`  
-Production API client for VAA generation and smart contract integration.
+Production API client with additional features for VAA generation and smart contract integration.
 
 ```typescript
 const client = new ProductionPythClient();
@@ -244,7 +250,6 @@ The production VAAs are compatible with all blockchain networks supporting Pyth 
 
 Contract addresses available at: https://docs.pyth.network/price-feeds/contract-addresses
 
-
 ## Resources
 
 ### External Documentation
@@ -257,5 +262,3 @@ Contract addresses available at: https://docs.pyth.network/price-feeds/contract-
 - **Wormhole Protocol**: https://wormhole.com/
 - **VAA Specification**: https://docs.wormhole.com/wormhole/
 - **EVM Integration Guide**: https://docs.pyth.network/price-feeds/use-real-data/evm
-
-
