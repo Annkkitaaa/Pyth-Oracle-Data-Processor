@@ -5,6 +5,9 @@ export class PythDataDecoder {
   /**
    * Decode Hermes binary data into structured format
    */
+  /**
+   * Decode Hermes binary data into structured format
+   */
   static decodePriceUpdates(hermesResponse: HermesResponse): ProcessingResult {
     try {
       const startTime = Date.now();
@@ -15,18 +18,26 @@ export class PythDataDecoder {
       }
       
       const binaryData = hermesResponse.binary.data[0]; // Get the hex string
-      const parsedData = hermesResponse.parsed;
+      const parsedData = hermesResponse.parsed || [];
       
       console.log(`Decoding binary data of length: ${binaryData.length}`);
+      console.log(`Found ${parsedData.length} parsed price feeds`);
       
-      // Convert hex string to buffer
+      // Convert hex string to buffer for reference
       const buffer = Buffer.from(binaryData, 'hex');
       
-      // Decode the binary data structure
-      const decodedUpdates = this.parsePythAccumulatorUpdate(buffer);
-      
-      // Merge with parsed data for validation
-      const enrichedUpdates = this.enrichWithParsedData(decodedUpdates, parsedData);
+      // Use the parsed data from Hermes (this is the reliable approach)
+      // Convert parsed data to our internal format
+      const decodedUpdates = parsedData.map((parsed: any) => ({
+        feedId: parsed.id.startsWith('0x') ? parsed.id : `0x${parsed.id}`,
+        priceValue: BigInt(parsed.price.price),
+        confidence: BigInt(parsed.price.conf),
+        exponent: parsed.price.expo,
+        publishTime: parsed.price.publish_time,
+        emaPrice: BigInt(parsed.ema_price.price),
+        emaConfidence: BigInt(parsed.ema_price.conf),
+        slot: parsed.metadata?.slot || 0
+      }));
       
       const processingTime = Date.now() - startTime;
       
@@ -34,13 +45,13 @@ export class PythDataDecoder {
         success: true,
         data: {
           originalBinary: binaryData,
-          decodedUpdates: enrichedUpdates,
-          feedCount: enrichedUpdates.length,
+          decodedUpdates: decodedUpdates,
+          feedCount: decodedUpdates.length,
           buffer: buffer
         },
         timestamp: Date.now(),
         metadata: {
-          totalFeeds: enrichedUpdates.length,
+          totalFeeds: decodedUpdates.length,
           processingTime
         }
       };
@@ -241,7 +252,7 @@ export class PythDataDecoder {
     }
 
     decodedUpdates.forEach((update, index) => {
-      if (!update.feedId || !update.feedId.startsWith('0x')) {
+      if (!update.feedId || (update.feedId.length !== 66 && update.feedId.length !== 64)) {
         errors.push(`Update ${index}: Invalid feed ID format`);
       }
       
