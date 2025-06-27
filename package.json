@@ -1,49 +1,72 @@
 {
-    "name": "pyth-oracle-processor",
-    "version": "1.0.0",
-    "description": "Process Pyth Network oracle data - fetch, decode, and re-encode price updates",
-    "main": "dist/index.js",
-    "scripts": {
-      "build": "tsc",
-      "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-      "start": "node dist/index.js",
-      "fetch": "ts-node src/scripts/fetchPriceUpdates.ts",
-      "decode": "ts-node src/scripts/decodePriceData.ts",
-      "reencode": "ts-node src/scripts/reencodeSelected.ts",
-      "validate": "ts-node src/scripts/validateUpdate.ts",
-      "process-all": "npm run fetch && npm run decode && npm run reencode && npm run validate",
-      "test": "jest",
-      "test:watch": "jest --watch",
-      "lint": "eslint src/**/*.ts",
-      "lint:fix": "eslint src/**/*.ts --fix"
-    },
-    "keywords": [
-      "pyth",
-      "oracle",
-      "blockchain",
-      "price-feeds",
-      "defi"
-    ],
-    "author": "Your Name",
-    "license": "MIT",
-    "dependencies": {
-      "@pythnetwork/hermes-client": "^1.0.0",
-      "axios": "^1.6.0",
-      "dotenv": "^16.3.1",
-      "ethers": "^6.8.0"
-    },
-    "devDependencies": {
-      "@types/node": "^20.8.0",
-      "@typescript-eslint/eslint-plugin": "^6.7.0",
-      "@typescript-eslint/parser": "^6.7.0",
-      "eslint": "^8.50.0",
-      "jest": "^29.7.0",
-      "ts-jest": "^29.1.0",
-      "ts-node": "^10.9.0",
-      "ts-node-dev": "^2.0.0",
-      "typescript": "^5.2.0"
-    },
-    "engines": {
-      "node": ">=18.0.0"
-    }
+  "name": "pyth-oracle-processor",
+  "version": "1.0.0",
+  "description": "Process Pyth Network oracle data - fetch, decode, and re-encode price updates",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "start": "node dist/index.js",
+    
+    "fetch": "ts-node src/scripts/fetchPriceUpdates.ts",
+    "decode": "ts-node src/scripts/decodePriceData.ts",
+    "reencode": "ts-node src/scripts/reencodeSelected.ts",
+    "validate": "ts-node src/scripts/validateUpdate.ts",
+    "process-all": "npm run fetch && npm run decode && npm run reencode && npm run validate",
+    
+    "fetch-production": "ts-node src/scripts/fetchProductionUpdates.ts",
+    "select-production": "ts-node src/scripts/selectProductionFeeds.ts",
+    "validate-production": "ts-node src/scripts/validateProduction.ts",
+    "production-pipeline": "npm run fetch-production && npm run select-production && npm run validate-production",
+    
+    "benchmark": "ts-node src/scripts/benchmark.ts",
+    "health-check": "ts-node src/scripts/healthCheck.ts",
+    "health-monitor": "ts-node src/scripts/healthCheck.ts monitor",
+    "health-quick": "ts-node src/scripts/healthCheck.ts quick",
+    
+    "docker:build": "docker build -t pyth-oracle-processor .",
+    "docker:run": "docker run --rm -v $(pwd)/data:/app/data pyth-oracle-processor",
+    "docker:compose": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:integration": "RUN_INTEGRATION_TESTS=true jest --testPathPattern=integration",
+    "test:production": "RUN_INTEGRATION_TESTS=true jest --testPathPattern=production",
+    
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    
+    "clean": "rm -rf dist/ data/*.json",
+    "reset": "npm run clean && npm install"
+  },
+  "keywords": [
+    "pyth",
+    "oracle",
+    "blockchain",
+    "price-feeds",
+    "defi"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@pythnetwork/hermes-client": "^1.0.0",
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "eslint": "^9.17.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
+}
