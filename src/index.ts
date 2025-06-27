@@ -5,6 +5,9 @@ import fetchPriceUpdates from './scripts/fetchPriceUpdates';
 import decodePriceData from './scripts/decodePriceData';
 import reencodeSelectedFeeds from './scripts/reencodeSelected';
 import validateUpdate from './scripts/validateUpdate';
+import fetchProductionUpdates from './scripts/fetchProductionUpdates';
+import selectProductionFeeds from './scripts/selectProductionFeeds';
+import validateProduction from './scripts/validateProduction';
 
 // Load environment variables
 dotenv.config();
@@ -21,6 +24,7 @@ async function main() {
 
   try {
     switch (command) {
+      // Demo pipeline (for educational purposes)
       case 'fetch':
         await fetchPriceUpdates();
         break;
@@ -39,7 +43,7 @@ async function main() {
         
       case 'all':
       case 'process-all':
-        console.log('🚀 Running complete processing pipeline...\n');
+        console.log('🚀 Running DEMO processing pipeline...\n');
         await fetchPriceUpdates();
         console.log('\n' + '='.repeat(60) + '\n');
         await decodePriceData();
@@ -47,7 +51,31 @@ async function main() {
         await reencodeSelectedFeeds();
         console.log('\n' + '='.repeat(60) + '\n');
         await validateUpdate();
-        console.log('\n🎉 Complete pipeline finished successfully!');
+        console.log('\n🎉 Demo pipeline finished successfully!');
+        break;
+
+      // Production pipeline (ready for on-chain use)
+      case 'fetch-production':
+        await fetchProductionUpdates();
+        break;
+        
+      case 'select-production':
+        await selectProductionFeeds();
+        break;
+        
+      case 'validate-production':
+        await validateProduction();
+        break;
+        
+      case 'production':
+      case 'production-pipeline':
+        console.log('🚀 Running PRODUCTION processing pipeline...\n');
+        await fetchProductionUpdates();
+        console.log('\n' + '='.repeat(60) + '\n');
+        await selectProductionFeeds();
+        console.log('\n' + '='.repeat(60) + '\n');
+        await validateProduction();
+        console.log('\n🎉 Production pipeline finished successfully!');
         break;
         
       case 'help':
@@ -72,25 +100,55 @@ function printHelp() {
   console.log(`
 Usage: npm run <command> or node dist/index.js <command>
 
-Available commands:
+🎯 PRODUCTION PIPELINE (Ready for on-chain use):
 
-  fetch        Fetch latest price updates for 20 assets from Hermes API
-  decode       Decode binary price data into readable format  
-  reencode     Re-encode selected 5 assets into new payload
-  validate     Validate the complete processing pipeline
-  all          Run the complete pipeline (fetch → decode → reencode → validate)
-  help         Show this help message
+  fetch-production      Fetch individual VAAs for 20 assets from Hermes API
+  select-production     Select 5 feeds with valid VAAs for on-chain submission  
+  validate-production   Validate VAAs are ready for Pyth contract calls
+  production            Run complete production pipeline ⭐ RECOMMENDED ⭐
+
+📚 DEMO PIPELINE (Educational - shows binary decoding concepts):
+
+  fetch                 Fetch price updates and demonstrate API usage
+  decode                Decode binary data (educational demonstration)
+  reencode              Re-encode for concept demonstration  
+  validate              Validate the demo processing pipeline
+  all                   Run complete demo pipeline
+
+🛠 DEVELOPMENT:
+
+  help                  Show this help message
+  build                 Compile TypeScript to JavaScript
+  test                  Run test suite
+  lint                  Check code style
+
+🏆 RECOMMENDED USAGE:
+
+  npm run production-pipeline    # Get production-ready VAAs for on-chain use
 
 Examples:
 
-  npm run fetch          # Fetch price data
-  npm run process-all    # Run complete pipeline
-  node dist/index.js all # Run from compiled JavaScript
+  npm run production-pipeline    # Complete production pipeline
+  npm run fetch-production       # Just fetch production VAAs
+  npm run all                    # Demo pipeline for learning
 
 Environment Variables:
 
-  DEBUG=1                # Enable debug logging
-  RUN_INTEGRATION_TESTS=true  # Enable integration tests
+  DEBUG=1                        # Enable debug logging
+  RUN_INTEGRATION_TESTS=true     # Enable integration tests
+
+📋 KEY DIFFERENCES:
+
+  PRODUCTION PIPELINE:
+  ✅ Individual VAAs signed by Wormhole guardians  
+  ✅ Ready for direct submission to Pyth contracts
+  ✅ Proper gas estimation and validation
+  ✅ Cross-chain compatible
+  
+  DEMO PIPELINE:  
+  📚 Educational binary format exploration
+  📚 Shows concepts of price data processing
+  📚 Demonstrates API integration patterns
 
 For more information, see the README.md file.
 `);
