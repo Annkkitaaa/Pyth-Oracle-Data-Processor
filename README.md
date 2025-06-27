@@ -110,23 +110,6 @@ npm run production-pipeline  # Execute all production steps
 
 **Output**: Production-ready VAAs with Wormhole signatures suitable for direct smart contract submission.
 
-### Additional Commands
-```bash
-# Development
-npm run dev         # Start development server with hot reload
-npm run lint        # Run ESLint code analysis
-npm run lint:fix    # Fix ESLint issues automatically
-
-# Testing
-npm test                    # Run test suite
-npm run test:integration    # Run integration tests
-npm run test:production     # Test production components
-
-# Utilities
-npm run clean       # Remove build artifacts and data files
-npm run reset       # Clean and reinstall dependencies
-```
-
 ## Project Structure
 
 ```
@@ -227,52 +210,6 @@ interface PriceFeedInfo {
 }
 ```
 
-## Smart Contract Integration
-
-### Solidity Implementation
-```solidity
-pragma solidity ^0.8.0;
-
-import "@pythnetwork/pyth-sdk-solidity/IPyth.sol";
-
-contract PriceConsumer {
-    IPyth pyth;
-    
-    constructor(address _pythContract) {
-        pyth = IPyth(_pythContract);
-    }
-    
-    function updatePrices(bytes[] calldata updateData) external payable {
-        uint fee = pyth.getUpdateFee(updateData);
-        require(msg.value >= fee, "Insufficient fee");
-        
-        pyth.updatePriceFeeds{value: fee}(updateData);
-    }
-    
-    function getPrice(bytes32 priceId) external view returns (PythStructs.Price memory) {
-        return pyth.getPrice(priceId);
-    }
-}
-```
-
-### JavaScript Integration
-```javascript
-import { ethers } from 'ethers';
-
-// Load production VAAs
-const updateData = [
-    "0x504e41550100000003...", // BTC/USD VAA
-    "0x504e41550100000003...", // ADA/USD VAA
-    // ... additional VAAs
-];
-
-// Submit to Pyth contract
-const pythContract = new ethers.Contract(pythAddress, pythABI, signer);
-const fee = await pythContract.getUpdateFee(updateData);
-const tx = await pythContract.updatePriceFeeds(updateData, { value: fee });
-await tx.wait();
-```
-
 ## Gas Optimization
 
 ### Cost Structure
@@ -307,108 +244,6 @@ The production VAAs are compatible with all blockchain networks supporting Pyth 
 
 Contract addresses available at: https://docs.pyth.network/price-feeds/contract-addresses
 
-## Error Handling
-
-### Common Issues
-
-#### Invalid Price Feed IDs
-```bash
-Error: Price ids not found: 0x...
-```
-**Solution**: Verify price feed IDs at https://pyth.network/developers/price-feed-ids
-
-#### API Rate Limiting
-```bash
-Error: Request failed with status code 429
-```
-**Solution**: Implement exponential backoff or reduce request frequency
-
-#### Network Timeouts
-```bash
-Error: timeout of 30000ms exceeded
-```
-**Solution**: Increase timeout in configuration or check network connectivity
-
-### Debugging
-
-Enable debug logging:
-```bash
-DEBUG=true npm run production-pipeline
-```
-
-Increase API timeout:
-```bash
-API_TIMEOUT=60000 npm run fetch-production
-```
-
-## Development
-
-### Code Style
-- TypeScript with strict type checking
-- ESLint configuration with recommended rules  
-- Prettier formatting for consistent code style
-- Comprehensive error handling and logging
-
-### Testing
-```bash
-npm test                    # Unit tests
-npm run test:integration    # API integration tests  
-npm run test:production     # Production pipeline tests
-```
-
-### Contributing
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/enhancement`)
-3. Implement changes with tests
-4. Ensure linting passes (`npm run lint`)
-5. Submit pull request with detailed description
-
-## Performance Metrics
-
-### Typical Processing Times
-- **Demo Pipeline**: ~10-15 seconds for 20 feeds
-- **Production Pipeline**: ~5-8 seconds for VAA generation
-- **Individual Feed Fetch**: ~200ms per feed
-- **Batch Processing**: ~2-4 seconds per 10-feed batch
-
-### Data Sizes
-- **Individual VAA**: ~8,488 characters (~4,244 bytes)
-- **5 Selected VAAs**: ~42,440 characters (~21,220 bytes)
-- **Complete Dataset**: ~169,760 characters (~84,880 bytes)
-
-## Security Considerations
-
-### VAA Verification
-- All production VAAs include Wormhole guardian signatures
-- Smart contracts verify cryptographic signatures on-chain
-- Invalid or tampered VAAs are rejected by Pyth contracts
-
-### API Security
-- HTTPS-only connections to Hermes API
-- Request timeout and retry limits prevent resource exhaustion
-- Input validation for all price feed identifiers
-
-## Troubleshooting
-
-### Build Issues
-```bash
-# Clear build cache
-npm run clean
-npm install
-npm run build
-```
-
-### API Connection Problems
-```bash
-# Test API connectivity
-curl https://hermes.pyth.network/v2/updates/price/latest?ids[]=0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43
-```
-
-### TypeScript Compilation Errors
-```bash
-# Verify TypeScript configuration
-npx tsc --noEmit
-```
 
 ## Resources
 
@@ -423,7 +258,4 @@ npx tsc --noEmit
 - **VAA Specification**: https://docs.wormhole.com/wormhole/
 - **EVM Integration Guide**: https://docs.pyth.network/price-feeds/use-real-data/evm
 
-## License
-
-MIT License - see LICENSE file for details.
 
