@@ -100,7 +100,7 @@ export class HermesApiClient {
     });
 
     const url = `${this.config.baseUrl}${API_ENDPOINTS.LATEST_PRICE_UPDATES}?${params.toString()}`;
-    console.log(`📡 Fetching with array params: ${priceIds.length} feeds`);
+    console.log(` Fetching with array params: ${priceIds.length} feeds`);
     
     return await this.makeRequest(url);
   }
@@ -109,7 +109,7 @@ export class HermesApiClient {
    * Method 2: Batch processing with smaller chunks
    */
   private async fetchWithBatchSize(priceIds: string[], batchSize: number): Promise<AxiosResponse<HermesResponse>> {
-    console.log(`📦 Batch processing with size ${batchSize}`);
+    console.log(` Batch processing with size ${batchSize}`);
     
     if (priceIds.length <= batchSize) {
       return await this.fetchWithArrayParams(priceIds);
@@ -120,7 +120,7 @@ export class HermesApiClient {
       batches.push(priceIds.slice(i, i + batchSize));
     }
 
-    console.log(`📦 Processing ${batches.length} batches of ${batchSize} feeds each`);
+    console.log(` Processing ${batches.length} batches of ${batchSize} feeds each`);
 
     const allParsed: any[] = [];
     let combinedBinary = '';
