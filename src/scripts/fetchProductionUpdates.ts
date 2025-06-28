@@ -5,7 +5,7 @@ import { getAllPriceFeedIds, PRICE_FEEDS } from '../config/priceFeeds';
 import { OUTPUT_PATHS } from '../config/constants';
 
 async function fetchProductionUpdates() {
-  console.log('🚀 Starting PRODUCTION price update fetch process...');
+  console.log(' Starting PRODUCTION price update fetch process...');
   console.log('='.repeat(60));
 
   try {
@@ -14,7 +14,7 @@ async function fetchProductionUpdates() {
     
     // Get all 20 price feed IDs
     const priceIds = getAllPriceFeedIds();
-    console.log(`📊 Fetching INDIVIDUAL VAAs for ${priceIds.length} price feeds:`);
+    console.log(` Fetching INDIVIDUAL VAAs for ${priceIds.length} price feeds:`);
     
     // Display the feeds we're fetching
     PRICE_FEEDS.forEach((feed, index) => {
@@ -23,7 +23,7 @@ async function fetchProductionUpdates() {
     console.log();
 
     // Fetch individual price updates (each with its own VAA)
-    console.log('🔄 Fetching individual price updates with VAAs...');
+    console.log(' Fetching individual price updates with VAAs...');
     const result = await client.fetchIndividualPriceUpdates(priceIds);
 
     if (!result.success) {
@@ -69,39 +69,39 @@ async function fetchProductionUpdates() {
     );
 
     // Display results
-    console.log('✅ PRODUCTION price update fetch completed successfully!');
-    console.log(`📁 Data saved to: ${OUTPUT_PATHS.RAW_DATA.replace('.json', '_production.json')}`);
-    console.log(`⏱️  Processing time: ${result.metadata?.processingTime}ms`);
-    console.log(`📊 Successfully fetched ${individualUpdates.length} individual VAAs`);
+    console.log(' PRODUCTION price update fetch completed successfully!');
+    console.log(` Data saved to: ${OUTPUT_PATHS.RAW_DATA.replace('.json', '_production.json')}`);
+    console.log(` Processing time: ${result.metadata?.processingTime}ms`);
+    console.log(` Successfully fetched ${individualUpdates.length} individual VAAs`);
     
     // Display validation info
     const validUpdates = individualUpdates.filter((u: any) => 
       ProductionPythClient.validateUpdateData(u.updateData)
     );
-    console.log(`✅ Valid VAAs: ${validUpdates.length}/${individualUpdates.length}`);
+    console.log(` Valid VAAs: ${validUpdates.length}/${individualUpdates.length}`);
     
     // Display total data size
     const totalSize = individualUpdates.reduce((sum: number, u: any) => sum + u.updateData.length, 0);
-    console.log(`💾 Total VAA data size: ${totalSize} characters (${totalSize / 2} bytes)`);
+    console.log(` Total VAA data size: ${totalSize} characters (${totalSize / 2} bytes)`);
 
     // Display sample of fetched data
-    console.log('\n📋 Sample of fetched price data:');
+    console.log('\n Sample of fetched price data:');
     individualUpdates.slice(0, 5).forEach((update: any, index: number) => {
       const vaaSize = update.updateData.length;
       console.log(`   ${index + 1}. ${update.symbol}: ${update.priceInfo.price.toFixed(2)} (VAA: ${vaaSize} chars)`);
     });
 
     // Display key differences from demo version
-    console.log('\n🔧 PRODUCTION vs DEMO differences:');
-    console.log('   ✅ Individual VAAs: Each feed has its own valid VAA');
-    console.log('   ✅ Direct submission: VAAs can be submitted directly to Pyth contracts');
-    console.log('   ✅ Wormhole signed: All updates are signed by Wormhole guardians');
-    console.log('   ✅ On-chain compatible: Passes all Pyth contract validations');
+    console.log('\n PRODUCTION vs DEMO differences:');
+    console.log('   Individual VAAs: Each feed has its own valid VAA');
+    console.log('   Direct submission: VAAs can be submitted directly to Pyth contracts');
+    console.log('   Wormhole signed: All updates are signed by Wormhole guardians');
+    console.log('   On-chain compatible: Passes all Pyth contract validations');
 
-    console.log('\n🎯 Next step: Run `npm run select-production` to select 5 feeds');
+    console.log('\n Next step: Run `npm run select-production` to select 5 feeds');
     
   } catch (error) {
-    console.error('❌ Error fetching production price updates:', error);
+    console.error(' Error fetching production price updates:', error);
     process.exit(1);
   }
 }
