@@ -31,23 +31,23 @@ async function validateUpdate() {
     const selectedFeedCount = reencodedData.selectedFeedCount;
 
     if (originalFeedCount !== decodedFeedCount) {
-      console.error(`❌ Feed count mismatch: Original(${originalFeedCount}) vs Decoded(${decodedFeedCount})`);
+      console.error(` Feed count mismatch: Original(${originalFeedCount}) vs Decoded(${decodedFeedCount})`);
     } else {
-      console.log(`✅ Feed count preserved: ${originalFeedCount} feeds`);
+      console.log(` Feed count preserved: ${originalFeedCount} feeds`);
     }
 
     // Validation 2: Selected feeds match expectations
-    console.log('\n🔍 Validation 2: Selected feeds validation...');
+    console.log('\n Validation 2: Selected feeds validation...');
     
     const expectedSelectedCount = 5;
     if (selectedFeedCount !== expectedSelectedCount) {
-      console.error(`❌ Selected feed count mismatch: Expected(${expectedSelectedCount}) vs Actual(${selectedFeedCount})`);
+      console.error(` Selected feed count mismatch: Expected(${expectedSelectedCount}) vs Actual(${selectedFeedCount})`);
     } else {
-      console.log(`✅ Selected feed count correct: ${selectedFeedCount} feeds`);
+      console.log(` Selected feed count correct: ${selectedFeedCount} feeds`);
     }
 
     // Validation 3: Re-encoded data can be decoded back
-    console.log('\n🔍 Validation 3: Round-trip decoding test...');
+    console.log('\n Validation 3: Round-trip decoding test...');
     
     try {
       const mockHermesResponse = {
@@ -61,10 +61,10 @@ async function validateUpdate() {
       const decodeResult = PythDataDecoder.decodePriceUpdates(mockHermesResponse);
       
       if (!decodeResult.success) {
-        console.error(`❌ Failed to decode re-encoded data: ${decodeResult.error}`);
+        console.error(` Failed to decode re-encoded data: ${decodeResult.error}`);
       } else {
         const roundTripUpdates = decodeResult.data.decodedUpdates;
-        console.log(`✅ Round-trip successful: ${roundTripUpdates.length} feeds decoded`);
+        console.log(`Round-trip successful: ${roundTripUpdates.length} feeds decoded`);
         
         // Compare feed IDs
         const originalSelectedIds = reencodedData.selectedFeeds.map((f: any) => f.feedId);
