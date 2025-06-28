@@ -15,12 +15,12 @@ export class ProductionPythClient {
     const startTime = Date.now();
     
     try {
-      console.log(`🔄 Fetching individual price updates for ${priceIds.length} feeds...`);
+      console.log(` Fetching individual price updates for ${priceIds.length} feeds...`);
       
       // Validate price IDs first
       const validation = ProductionPythClient.validatePriceIds(priceIds);
       if (validation.invalid.length > 0) {
-        console.warn(`⚠️  Warning: Found ${validation.invalid.length} invalid price IDs`);
+        console.warn(`  Warning: Found ${validation.invalid.length} invalid price IDs`);
         validation.invalid.forEach(id => console.warn(`   - ${id}`));
       }
 
