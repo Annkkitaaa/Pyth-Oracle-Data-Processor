@@ -25,7 +25,7 @@ export class HermesApiClient {
       // Validate price IDs first
       const validation = HermesApiClient.validatePriceIds(priceIds);
       if (validation.invalid.length > 0) {
-        console.warn(`⚠️  Warning: Found ${validation.invalid.length} invalid price IDs`);
+        console.warn(`  Warning: Found ${validation.invalid.length} invalid price IDs`);
         validation.invalid.forEach(id => console.warn(`   - ${id}`));
       }
 
@@ -35,7 +35,7 @@ export class HermesApiClient {
         throw new Error('No valid price IDs found');
       }
 
-      console.log(`📊 Using ${validIds.length} unique valid IDs`);
+      console.log(` Using ${validIds.length} unique valid IDs`);
 
       // Try different methods to fetch data
       const methods = [
@@ -49,7 +49,7 @@ export class HermesApiClient {
 
       for (let i = 0; i < methods.length; i++) {
         try {
-          console.log(`🔄 Trying Method ${i + 1}...`);
+          console.log(` Trying Method ${i + 1}...`);
           const response = await methods[i]();
           const processingTime = Date.now() - startTime;
 
@@ -65,10 +65,10 @@ export class HermesApiClient {
           };
         } catch (error) {
           lastError = error instanceof Error ? error : new Error(`Method ${i + 1} failed`);
-          console.log(`❌ Method ${i + 1} failed: ${lastError.message}`);
+          console.log(` Method ${i + 1} failed: ${lastError.message}`);
           
           if (i < methods.length - 1) {
-            console.log(`⏳ Waiting before trying next method...`);
+            console.log(` Waiting before trying next method...`);
             await this.delay(1000);
           }
         }
