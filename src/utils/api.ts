@@ -127,7 +127,7 @@ export class HermesApiClient {
 
     for (let i = 0; i < batches.length; i++) {
       const batch = batches[i];
-      console.log(`🔄 Processing batch ${i + 1}/${batches.length} (${batch.length} feeds)`);
+      console.log(` Processing batch ${i + 1}/${batches.length} (${batch.length} feeds)`);
       
       try {
         const response = await this.fetchWithArrayParams(batch);
@@ -145,7 +145,7 @@ export class HermesApiClient {
           await this.delay(500);
         }
       } catch (error) {
-        console.warn(`⚠️  Batch ${i + 1} failed, continuing with others...`);
+        console.warn(`  Batch ${i + 1} failed, continuing with others...`);
       }
     }
 
@@ -176,7 +176,7 @@ export class HermesApiClient {
    * Method 3: Fetch each feed individually and combine
    */
   private async fetchIndividuallyAndCombine(priceIds: string[]): Promise<AxiosResponse<HermesResponse>> {
-    console.log(`🔄 Fetching ${priceIds.length} feeds individually`);
+    console.log(` Fetching ${priceIds.length} feeds individually`);
     
     const allParsed: any[] = [];
     const validBinaries: string[] = [];
@@ -207,7 +207,7 @@ export class HermesApiClient {
       } catch (error) {
         const errorMsg = error instanceof Error ? error.message : 'Unknown error';
         errors.push(`Feed ${id.slice(0, 10)}: ${errorMsg}`);
-        console.warn(`⚠️  Failed to fetch ${id.slice(0, 10)}: ${errorMsg}`);
+        console.warn(`  Failed to fetch ${id.slice(0, 10)}: ${errorMsg}`);
       }
     }
 
@@ -215,7 +215,7 @@ export class HermesApiClient {
       throw new Error(`No feeds could be fetched. Errors: ${errors.join(', ')}`);
     }
 
-    console.log(`✅ Successfully fetched ${allParsed.length}/${priceIds.length} feeds`);
+    console.log(`Successfully fetched ${allParsed.length}/${priceIds.length} feeds`);
 
     // Use the first valid binary data (they should be compatible)
     const combinedResponse: AxiosResponse<HermesResponse> = {
