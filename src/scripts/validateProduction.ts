@@ -177,30 +177,30 @@ async function validateProduction() {
     selectedFeeds.forEach((feed: any) => {
       const original = originalUpdates.find((u: any) => u.feedId === feed.feedId);
       if (!original) {
-        console.error(`❌ Selected feed ${feed.symbol} not found in original data`);
+        console.error(` Selected feed ${feed.symbol} not found in original data`);
         crossReferenceValid = false;
       } else {
         // In a live oracle system, VAAs change constantly, so we check feed ID match rather than exact VAA match
         if (original.feedId === feed.feedId) {
-          console.log(`✅ Feed ID match for ${feed.symbol}: ${feed.feedId.slice(0, 12)}...`);
+          console.log(` Feed ID match for ${feed.symbol}: ${feed.feedId.slice(0, 12)}...`);
         } else {
-          console.error(`❌ Feed ID mismatch for ${feed.symbol}`);
+          console.error(` Feed ID mismatch for ${feed.symbol}`);
           crossReferenceValid = false;
         }
         
         // Check if VAAs are different (this is expected in live systems)
         if (original.updateData !== feed.vaaData) {
-          console.log(`ℹ️  VAA updated for ${feed.symbol} (normal in live oracle system)`);
+          console.log(`  VAA updated for ${feed.symbol} (normal in live oracle system)`);
         }
       }
     });
     
     if (crossReferenceValid) {
-      console.log('✅ All selected feeds have correct feed IDs and valid structure');
+      console.log(' All selected feeds have correct feed IDs and valid structure');
     }
 
     // Final Summary
-    console.log('\n📊 PRODUCTION Validation Summary');
+    console.log('\n PRODUCTION Validation Summary');
     console.log('='.repeat(40));
     console.log(`Original feeds: ${originalFeedCount}`);
     console.log(`Selected feeds: ${selectedFeedCount}`);
@@ -210,7 +210,7 @@ async function validateProduction() {
     console.log(`Ready for on-chain: ${selectData.productionUpdates.validation.readyForOnChainSubmission ? '✅ YES' : '❌ NO'}`);
 
     // Display selected feeds with full details
-    console.log('\n📋 Final selected feeds for on-chain submission:');
+    console.log('\n Final selected feeds for on-chain submission:');
     selectedFeeds.forEach((feed: any, index: number) => {
       const age = Math.round((Date.now() - feed.publishTime * 1000) / (1000 * 60));
       console.log(`   ${index + 1}. ${feed.symbol}: ${feed.price.toFixed(2)} ±${feed.confidence.toFixed(2)}`);
@@ -219,7 +219,7 @@ async function validateProduction() {
     });
 
     // Production Usage Examples
-    console.log('\n🚀 PRODUCTION Usage Examples:');
+    console.log('\n PRODUCTION Usage Examples:');
     console.log('\n1. Solidity Contract Integration:');
     console.log('```solidity');
     console.log('contract MyContract {');
@@ -296,25 +296,25 @@ async function validateProduction() {
 
     const allValidationsPassed = validationReport.finalAssessment.readyForProduction;
 
-    console.log('\n✅ PRODUCTION validation completed successfully!');
-    console.log('📁 Validation report saved to: ./data/validation_report_production.json');
+    console.log('\n PRODUCTION validation completed successfully!');
+    console.log(' Validation report saved to: ./data/validation_report_production.json');
     
     if (allValidationsPassed) {
-      console.log('\n🎉 🎉 🎉 PRODUCTION SUCCESS! 🎉 🎉 🎉');
+      console.log('\n PRODUCTION SUCCESS! ');
       console.log('Your Pyth price update data is PRODUCTION-READY for on-chain use!');
-      console.log('✅ All VAAs are valid and signed by Wormhole guardians');
-      console.log('✅ Ready for submission to any Pyth contract on any supported chain');
-      console.log('✅ Optimized for gas efficiency with only 5 selected feeds');
+      console.log('All VAAs are valid and signed by Wormhole guardians');
+      console.log(' Ready for submission to any Pyth contract on any supported chain');
+      console.log(' Optimized for gas efficiency with only 5 selected feeds');
     } else {
-      console.error('\n❌ PRODUCTION validation failed. Please check the errors above.');
+      console.error('\n PRODUCTION validation failed. Please check the errors above.');
     }
     
   } catch (error) {
-    console.error('❌ Error during production validation:', error);
+    console.error(' Error during production validation:', error);
     
     // Check for missing files
     if (error instanceof Error && error.message.includes('ENOENT')) {
-      console.log('\n💡 Tip: Ensure all previous steps completed successfully:');
+      console.log('\n Tip: Ensure all previous steps completed successfully:');
       console.log('   1. npm run fetch-production');
       console.log('   2. npm run select-production');
       console.log('   3. npm run validate-production');
