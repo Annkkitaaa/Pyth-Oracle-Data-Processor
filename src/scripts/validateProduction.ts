@@ -3,12 +3,12 @@ import { ProductionPythClient } from '../utils/productionApi';
 import { OUTPUT_PATHS } from '../config/constants';
 
 async function validateProduction() {
-  console.log('🔍 Starting PRODUCTION validation process...');
+  console.log(' Starting PRODUCTION validation process...');
   console.log('='.repeat(60));
 
   try {
     // Read production files
-    console.log('📖 Reading production data files...');
+    console.log(' Reading production data files...');
     
     const productionFetchFile = OUTPUT_PATHS.RAW_DATA.replace('.json', '_production.json');
     const productionSelectFile = OUTPUT_PATHS.REENCODED_DATA.replace('.json', '_production.json');
@@ -21,25 +21,25 @@ async function validateProduction() {
     const fetchData = JSON.parse(fetchContent);
     const selectData = JSON.parse(selectContent);
 
-    console.log('✅ All production data files loaded successfully');
+    console.log(' All production data files loaded successfully');
 
     // Validation 1: Data integrity across processing steps
-    console.log('\n🔍 Validation 1: Data integrity check...');
+    console.log('\n Validation 1: Data integrity check...');
     
     const originalFeedCount = fetchData.successfulFeeds;
     const selectedFeedCount = selectData.selectedFeedCount;
     const expectedSelectedCount = 5;
 
     if (selectedFeedCount !== expectedSelectedCount) {
-      console.error(`❌ Selected feed count mismatch: Expected(${expectedSelectedCount}) vs Actual(${selectedFeedCount})`);
+      console.error(` Selected feed count mismatch: Expected(${expectedSelectedCount}) vs Actual(${selectedFeedCount})`);
     } else {
-      console.log(`✅ Selected feed count correct: ${selectedFeedCount} feeds`);
+      console.log(` Selected feed count correct: ${selectedFeedCount} feeds`);
     }
 
-    console.log(`✅ Original feeds preserved: ${originalFeedCount} → ${selectedFeedCount} selected`);
+    console.log(` Original feeds preserved: ${originalFeedCount} → ${selectedFeedCount} selected`);
 
     // Validation 2: VAA Format Validation
-    console.log('\n🔍 Validation 2: VAA format validation...');
+    console.log('\n Validation 2: VAA format validation...');
     
     const selectedFeeds = selectData.productionUpdates.selectedFeeds;
     let validVAACount = 0;
@@ -55,9 +55,9 @@ async function validateProduction() {
     });
 
     if (validVAACount === selectedFeeds.length) {
-      console.log(`✅ All VAAs valid: ${validVAACount}/${selectedFeeds.length}`);
+      console.log(` All VAAs valid: ${validVAACount}/${selectedFeeds.length}`);
     } else {
-      console.error(`❌ Invalid VAAs found: ${invalidVAAs.join(', ')}`);
+      console.error(`Invalid VAAs found: ${invalidVAAs.join(', ')}`);
     }
 
     // Validation 3: VAA Structure Analysis
@@ -71,18 +71,18 @@ async function validateProduction() {
       try {
         // Basic structure checks
         if (!vaaData.startsWith('0x')) {
-          console.error(`❌ Feed ${feed.symbol}: VAA should start with 0x`);
+          console.error(`Feed ${feed.symbol}: VAA should start with 0x`);
           structureValidationPassed = false;
         }
         
         const dataLength = vaaData.length - 2; // Remove 0x prefix
         if (dataLength < 200) { // VAAs should be substantial
-          console.error(`❌ Feed ${feed.symbol}: VAA too short (${dataLength} chars)`);
+          console.error(` Feed ${feed.symbol}: VAA too short (${dataLength} chars)`);
           structureValidationPassed = false;
         }
         
         if (dataLength % 2 !== 0) {
-          console.error(`❌ Feed ${feed.symbol}: VAA has odd number of hex chars`);
+          console.error(` Feed ${feed.symbol}: VAA has odd number of hex chars`);
           structureValidationPassed = false;
         }
         
@@ -90,34 +90,34 @@ async function validateProduction() {
         Buffer.from(vaaData.slice(2), 'hex');
         
       } catch (error) {
-        console.error(`❌ Feed ${feed.symbol}: Invalid hex format`);
+        console.error(` Feed ${feed.symbol}: Invalid hex format`);
         structureValidationPassed = false;
       }
     });
 
     if (structureValidationPassed) {
-      console.log('✅ All VAA structures valid');
+      console.log(' All VAA structures valid');
     }
 
     // Validation 4: On-Chain Compatibility Check
-    console.log('\n🔍 Validation 4: On-chain compatibility check...');
+    console.log('\n Validation 4: On-chain compatibility check...');
     
     const onChainData = selectData.productionUpdates.onChainData;
     
     // Check calldata format
     const calldata = onChainData.updatePriceFeedsCalldata;
     if (!calldata.startsWith('0xa9852bcc')) {
-      console.error('❌ Invalid function selector in calldata');
+      console.error(' Invalid function selector in calldata');
     } else {
-      console.log('✅ Function selector correct: updatePriceFeeds');
+      console.log(' Function selector correct: updatePriceFeeds');
     }
 
     // Check individual VAAs array
     const individualVAAs = onChainData.individualVAAs;
     if (individualVAAs.length !== selectedFeedCount) {
-      console.error(`❌ VAA count mismatch in batch data`);
+      console.error(` VAA count mismatch in batch data`);
     } else {
-      console.log(`✅ Batch contains all ${individualVAAs.length} VAAs`);
+      console.log(` Batch contains all ${individualVAAs.length} VAAs`);
     }
 
     // Gas estimate validation
@@ -126,13 +126,13 @@ async function validateProduction() {
     const maxExpectedGas = selectedFeedCount * 100000; // Maximum realistic gas per feed
     
     if (gasEstimate < minExpectedGas || gasEstimate > maxExpectedGas) {
-      console.warn(`⚠️  Gas estimate seems unrealistic: ${gasEstimate.toLocaleString()}`);
+      console.warn(` Gas estimate seems unrealistic: ${gasEstimate.toLocaleString()}`);
     } else {
-      console.log(`✅ Gas estimate reasonable: ${gasEstimate.toLocaleString()}`);
+      console.log(` Gas estimate reasonable: ${gasEstimate.toLocaleString()}`);
     }
 
     // Validation 5: Price Data Sanity Check
-    console.log('\n🔍 Validation 5: Price data sanity check...');
+    console.log('\n Validation 5: Price data sanity check...');
     
     let priceValidationPassed = true;
     selectedFeeds.forEach((feed: any) => {
@@ -141,17 +141,17 @@ async function validateProduction() {
       
       // Basic sanity checks
       if (price <= 0) {
-        console.error(`❌ Feed ${feed.symbol}: Invalid price ${price}`);
+        console.error(` Feed ${feed.symbol}: Invalid price ${price}`);
         priceValidationPassed = false;
       }
       
       if (confidence < 0) {
-        console.error(`❌ Feed ${feed.symbol}: Invalid confidence ${confidence}`);
+        console.error(` Feed ${feed.symbol}: Invalid confidence ${confidence}`);
         priceValidationPassed = false;
       }
       
       if (confidence > price * 0.5) { // Confidence > 50% of price seems excessive
-        console.warn(`⚠️  Feed ${feed.symbol}: High confidence ${confidence.toFixed(2)} (${((confidence/price)*100).toFixed(1)}% of price)`);
+        console.warn(`  Feed ${feed.symbol}: High confidence ${confidence.toFixed(2)} (${((confidence/price)*100).toFixed(1)}% of price)`);
       }
       
       // Check publish time is recent (within last hour)
@@ -160,16 +160,16 @@ async function validateProduction() {
       const ageMinutes = (now - publishTime) / (1000 * 60);
       
       if (ageMinutes > 60) {
-        console.warn(`⚠️  Feed ${feed.symbol}: Price data is ${ageMinutes.toFixed(1)} minutes old`);
+        console.warn(`  Feed ${feed.symbol}: Price data is ${ageMinutes.toFixed(1)} minutes old`);
       }
     });
 
     if (priceValidationPassed) {
-      console.log('✅ All price data appears valid and recent');
+      console.log(' All price data appears valid and recent');
     }
 
     // Validation 6: Cross-Reference with Hermes Data
-    console.log('\n🔍 Validation 6: Cross-reference with original data...');
+    console.log('\n Validation 6: Cross-reference with original data...');
     
     const originalUpdates = fetchData.productionData.individualUpdates;
     let crossReferenceValid = true;
