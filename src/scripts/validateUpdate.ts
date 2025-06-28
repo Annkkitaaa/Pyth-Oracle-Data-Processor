@@ -4,12 +4,12 @@ import { PythDataEncoder } from '../utils/encoder';
 import { OUTPUT_PATHS } from '../config/constants';
 
 async function validateUpdate() {
-  console.log('🔍 Starting final validation process...');
+  console.log(' Starting final validation process...');
   console.log('='.repeat(50));
 
   try {
     // Read all data files
-    console.log('📖 Reading all processed data files...');
+    console.log(' Reading all processed data files...');
     
     const [rawContent, decodedContent, reencodedContent] = await Promise.all([
       fs.readFile(OUTPUT_PATHS.RAW_DATA, 'utf8'),
@@ -21,10 +21,10 @@ async function validateUpdate() {
     const decodedData = JSON.parse(decodedContent);
     const reencodedData = JSON.parse(reencodedContent);
 
-    console.log('✅ All data files loaded successfully');
+    console.log(' All data files loaded successfully');
 
     // Validation 1: Data integrity across processing steps
-    console.log('\n🔍 Validation 1: Data integrity check...');
+    console.log('\n Validation 1: Data integrity check...');
     
     const originalFeedCount = rawData.hermesResponse.parsed.length;
     const decodedFeedCount = decodedData.decodedUpdates.length;
