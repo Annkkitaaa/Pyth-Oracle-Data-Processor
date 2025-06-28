@@ -101,14 +101,14 @@ export class ProductionPythClient {
 
     for (let i = 0; i < methods.length; i++) {
       try {
-        console.log(`🔄 Trying Method ${i + 1} for batch of ${batchIds.length} feeds...`);
+        console.log(` Trying Method ${i + 1} for batch of ${batchIds.length} feeds...`);
         const result = await methods[i]();
         if (result.success) {
-          console.log(`✅ Method ${i + 1} succeeded!`);
+          console.log(` Method ${i + 1} succeeded!`);
           return result;
         }
       } catch (error) {
-        console.log(`❌ Method ${i + 1} failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        console.log(` Method ${i + 1} failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
         continue;
       }
     }
