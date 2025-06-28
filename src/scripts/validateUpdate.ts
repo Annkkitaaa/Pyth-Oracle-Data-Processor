@@ -72,36 +72,36 @@ async function validateUpdate() {
         
         const idsMatch = originalSelectedIds.every((id: string) => roundTripIds.includes(id));
         if (idsMatch) {
-          console.log('✅ Feed IDs preserved in round-trip');
+          console.log(' Feed IDs preserved in round-trip');
         } else {
-          console.error('❌ Feed IDs not preserved in round-trip');
+          console.error(' Feed IDs not preserved in round-trip');
         }
       }
     } catch (error) {
-      console.error(`❌ Round-trip test failed: ${error}`);
+      console.error(` Round-trip test failed: ${error}`);
     }
 
     // Validation 4: Calldata format validation
-    console.log('\n🔍 Validation 4: Calldata format validation...');
+    console.log('\n Validation 4: Calldata format validation...');
     
     const calldata = reencodedData.encodedData.calldata;
     
     // Check function selector
     if (!calldata.startsWith('0xa9852bcc')) {
-      console.error('❌ Invalid function selector in calldata');
+      console.error(' Invalid function selector in calldata');
     } else {
-      console.log('✅ Function selector correct: updatePriceFeeds');
+      console.log(' Function selector correct: updatePriceFeeds');
     }
 
     // Check calldata length
     if (calldata.length < 200) { // Minimum reasonable length
-      console.error('❌ Calldata appears too short');
+      console.error(' Calldata appears too short');
     } else {
-      console.log(`✅ Calldata length reasonable: ${calldata.length} characters`);
+      console.log(` Calldata length reasonable: ${calldata.length} characters`);
     }
 
     // Validation 5: Price data sanity check
-    console.log('\n🔍 Validation 5: Price data sanity check...');
+    console.log('\n Validation 5: Price data sanity check...');
     
     let priceValidationPassed = true;
     reencodedData.selectedFeeds.forEach((feed: any, index: number) => {
@@ -110,26 +110,26 @@ async function validateUpdate() {
       
       // Basic sanity checks
       if (price <= 0) {
-        console.error(`❌ Feed ${feed.symbol}: Invalid price ${price}`);
+        console.error(` Feed ${feed.symbol}: Invalid price ${price}`);
         priceValidationPassed = false;
       }
       
       if (confidence < 0) {
-        console.error(`❌ Feed ${feed.symbol}: Invalid confidence ${confidence}`);
+        console.error(` Feed ${feed.symbol}: Invalid confidence ${confidence}`);
         priceValidationPassed = false;
       }
       
       if (confidence > price * 0.5) { // Confidence > 50% of price seems excessive
-        console.warn(`⚠️  Feed ${feed.symbol}: High confidence ${confidence.toFixed(2)} (${((confidence/price)*100).toFixed(1)}% of price)`);
+        console.warn(`  Feed ${feed.symbol}: High confidence ${confidence.toFixed(2)} (${((confidence/price)*100).toFixed(1)}% of price)`);
       }
     });
 
     if (priceValidationPassed) {
-      console.log('✅ All price data appears valid');
+      console.log(' All price data appears valid');
     }
 
     // Final summary
-    console.log('\n📊 Final Validation Summary');
+    console.log('\n Final Validation Summary');
     console.log('='.repeat(30));
     console.log(`Original feeds: ${originalFeedCount}`);
     console.log(`Selected feeds: ${selectedFeedCount}`);
@@ -138,13 +138,13 @@ async function validateUpdate() {
     console.log(`Processing chain: Fetch → Decode → Re-encode → Validate`);
 
     // Display selected feeds
-    console.log('\n📋 Final selected feeds for on-chain update:');
+    console.log('\n Final selected feeds for on-chain update:');
     reencodedData.selectedFeeds.forEach((feed: any, index: number) => {
       console.log(`   ${index + 1}. ${feed.symbol}: $${feed.readablePrice.toFixed(2)} ±$${feed.readableConfidence.toFixed(2)}`);
     });
 
     // Display usage instructions
-    console.log('\n🚀 Usage Instructions:');
+    console.log('\n Usage Instructions:');
     console.log('To use this data with a Pyth consumer contract:');
     console.log('1. Deploy or connect to a contract that implements IPyth');
     console.log('2. Call the updatePriceFeeds function with the generated calldata:');
@@ -186,16 +186,16 @@ async function validateUpdate() {
       'utf8'
     );
 
-    console.log('\n✅ Final validation completed successfully!');
-    console.log('📁 Validation report saved to: ./data/validation_report.json');
-    console.log('\n🎉 Your Pyth price update data is ready for on-chain use!');
+    console.log('\n Final validation completed successfully!');
+    console.log(' Validation report saved to: ./data/validation_report.json');
+    console.log('\n Your Pyth price update data is ready for on-chain use!');
     
   } catch (error) {
-    console.error('❌ Error during validation:', error);
+    console.error(' Error during validation:', error);
     
     // Check for missing files
     if (error instanceof Error && error.message.includes('ENOENT')) {
-      console.log('\n💡 Tip: Ensure all previous steps completed successfully:');
+      console.log('\n Tip: Ensure all previous steps completed successfully:');
       console.log('   1. npm run fetch');
       console.log('   2. npm run decode');
       console.log('   3. npm run reencode');
