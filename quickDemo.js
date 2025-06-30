@@ -98,7 +98,7 @@ function createRealisticDemo() {
         console.log('📋 Share this simulation as proof your implementation works!');
         
     } catch (error) {
-        console.error('❌ Error creating simulation:', error.message);
+        console.error(' Error creating simulation:', error.message);
     }
 }
 

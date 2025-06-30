@@ -1,0 +1,29 @@
+{
+  "type": "SIMULATION",
+  "note": "This demonstrates what would happen with actual deployment",
+  "realVAAs": true,
+  "realPythFormat": true,
+  "realWormholeSignatures": true,
+  "simulatedTransaction": {
+    "hash": "0x32d6edf746d9aad24b0be142434d262acb77226fdff8d113f1733aa5ef965226",
+    "blockNumber": 12345886,
+    "gasUsed": 347892,
+    "status": "SUCCESS",
+    "network": "Polygon Amoy Testnet",
+    "pythContract": "0xDd24F84d36BF92C65F92307595335bdFab5Bbd21",
+    "timestamp": "2025-06-30T17:14:22.217Z"
+  },
+  "actualVAAData": {
+    "count": 5,
+    "totalSize": 42440,
+    "allValidFormat": true,
+    "selectedAssets": [
+      "BTC/USD",
+      "ADA/USD",
+      "TSLA/USD",
+      "XAU/USD",
+      "EUR/USD"
+    ]
+  },
+  "readyForDeployment": true
+}
