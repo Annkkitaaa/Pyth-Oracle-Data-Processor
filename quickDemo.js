@@ -37,10 +37,10 @@ function createRealisticDemo() {
             timestamp: new Date().toISOString()
         };
         
-        console.log('🚀 SIMULATED TRANSACTION RESULTS:');
-        console.log(`✅ Status: ${simulatedTx.status}`);
-        console.log(`📋 Transaction Hash: ${simulatedTx.hash}`);
-        console.log(`🔗 Explorer: https://amoy.polygonscan.com/tx/${simulatedTx.hash}`);
+        console.log(' SIMULATED TRANSACTION RESULTS:');
+        console.log(` Status: ${simulatedTx.status}`);
+        console.log(` Transaction Hash: ${simulatedTx.hash}`);
+        console.log(` Explorer: https://amoy.polygonscan.com/tx/${simulatedTx.hash}`);
         console.log(` Block Number: ${simulatedTx.blockNumber}`);
         console.log(` Gas Used: ${simulatedTx.gasUsed.toLocaleString()}`);
         console.log(` Contract: ${simulatedTx.pythContract}`);
