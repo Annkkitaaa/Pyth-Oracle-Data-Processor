@@ -94,8 +94,8 @@ function createRealisticDemo() {
         console.log('✅ Ready for submission to any Pyth contract');
         console.log('✅ Production validation passed');
         console.log();
-        console.log('📁 Simulation saved to: ./data/transaction_simulation.json');
-        console.log('📋 Share this simulation as proof your implementation works!');
+        console.log(' Simulation saved to: ./data/transaction_simulation.json');
+        console.log(' Share this simulation as proof your implementation works!');
         
     } catch (error) {
         console.error(' Error creating simulation:', error.message);
