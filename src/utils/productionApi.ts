@@ -15,12 +15,12 @@ export class ProductionPythClient {
     const startTime = Date.now();
     
     try {
-      console.log(`🔄 Fetching individual price updates for ${priceIds.length} feeds...`);
+      console.log(` Fetching individual price updates for ${priceIds.length} feeds...`);
       
       // Validate price IDs first
       const validation = ProductionPythClient.validatePriceIds(priceIds);
       if (validation.invalid.length > 0) {
-        console.warn(`⚠️  Warning: Found ${validation.invalid.length} invalid price IDs`);
+        console.warn(`  Warning: Found ${validation.invalid.length} invalid price IDs`);
         validation.invalid.forEach(id => console.warn(`   - ${id}`));
       }
 
@@ -30,7 +30,7 @@ export class ProductionPythClient {
         throw new Error('No valid price IDs found');
       }
 
-      console.log(`📊 Using ${validIds.length} unique valid IDs`);
+      console.log(` Using ${validIds.length} unique valid IDs`);
 
       // Try with smaller batches first - API might have limits
       const batchSize = 10; // Increased batch size since we have valid IDs
@@ -38,13 +38,13 @@ export class ProductionPythClient {
 
       for (let i = 0; i < validIds.length; i += batchSize) {
         const batchIds = validIds.slice(i, i + batchSize);
-        console.log(`🔄 Processing batch ${Math.floor(i / batchSize) + 1}: ${batchIds.length} feeds`);
+        console.log(` Processing batch ${Math.floor(i / batchSize) + 1}: ${batchIds.length} feeds`);
         
         const batchResult = await this.fetchBatch(batchIds);
         if (batchResult.success && batchResult.data) {
           allIndividualUpdates.push(...batchResult.data);
         } else {
-          console.warn(`⚠️  Batch ${Math.floor(i / batchSize) + 1} failed: ${batchResult.error}`);
+          console.warn(` Batch ${Math.floor(i / batchSize) + 1} failed: ${batchResult.error}`);
         }
         
         // Small delay between batches to be nice to the API
@@ -101,14 +101,14 @@ export class ProductionPythClient {
 
     for (let i = 0; i < methods.length; i++) {
       try {
-        console.log(`🔄 Trying Method ${i + 1} for batch of ${batchIds.length} feeds...`);
+        console.log(` Trying Method ${i + 1} for batch of ${batchIds.length} feeds...`);
         const result = await methods[i]();
         if (result.success) {
-          console.log(`✅ Method ${i + 1} succeeded!`);
+          console.log(` Method ${i + 1} succeeded!`);
           return result;
         }
       } catch (error) {
-        console.log(`❌ Method ${i + 1} failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        console.log(` Method ${i + 1} failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
         continue;
       }
     }
