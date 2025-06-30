@@ -4,7 +4,7 @@
 const fs = require('fs');
 
 function createRealisticDemo() {
-    console.log('🎭 TRANSACTION SIMULATION DEMO');
+    console.log(' TRANSACTION SIMULATION DEMO');
     console.log('='.repeat(50));
     
     try {
@@ -13,12 +13,12 @@ function createRealisticDemo() {
         const updateData = productionData.productionUpdates.onChainData.individualVAAs;
         const selectedFeeds = productionData.productionUpdates.selectedFeeds;
         
-        console.log('📊 USING YOUR ACTUAL GENERATED VAAs:');
+        console.log(' USING YOUR ACTUAL GENERATED VAAs:');
         console.log(`   VAA Count: ${updateData.length}`);
         console.log(`   Total Size: ${updateData.reduce((sum, vaa) => sum + vaa.length, 0)} characters`);
         console.log();
         
-        console.log('🎯 SELECTED FEEDS:');
+        console.log(' SELECTED FEEDS:');
         selectedFeeds.forEach((feed, index) => {
             console.log(`   ${index + 1}. ${feed.symbol}: $${feed.price.toFixed(2)}`);
             console.log(`      VAA: ${feed.vaaData.slice(0, 20)}...${feed.vaaData.slice(-20)}`);
