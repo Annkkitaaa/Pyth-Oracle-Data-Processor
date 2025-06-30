@@ -146,10 +146,7 @@ pyth-oracle-data-processor/
 │   ├── reencoded_data.json                # Demo: Re-encoded data
 │   ├── raw_price_updates_production.json  # Production: Individual VAAs
 │   ├── reencoded_data_production.json     # Production: Selected feeds
-│   └── validation_report_production.json  # Production: Validation results
-├── tests/                         # Test suite
-├── dist/                          # Compiled JavaScript output
-├── package.json                   # Project dependencies and scripts
+│   └── validation_report_production.json  # Production: Validation results                     ├── package.json                  
 ├── tsconfig.json                  # TypeScript configuration
 ├── .eslintrc.js                  # ESLint configuration
 ├── jest.config.js                # Jest testing configuration
