@@ -87,12 +87,12 @@ function createRealisticDemo() {
         
         fs.writeFileSync('./data/transaction_simulation.json', JSON.stringify(simulationReport, null, 2));
         
-        console.log('🎉 PROOF OF WORKING IMPLEMENTATION:');
-        console.log('✅ Real VAAs generated from Pyth Network');
-        console.log('✅ Valid Wormhole signatures confirmed'); 
-        console.log('✅ Proper Pyth VAA format (0x504e4155...)');
-        console.log('✅ Ready for submission to any Pyth contract');
-        console.log('✅ Production validation passed');
+        console.log(' PROOF OF WORKING IMPLEMENTATION:');
+        console.log(' Real VAAs generated from Pyth Network');
+        console.log(' Valid Wormhole signatures confirmed'); 
+        console.log(' Proper Pyth VAA format (0x504e4155...)');
+        console.log(' Ready for submission to any Pyth contract');
+        console.log(' Production validation passed');
         console.log();
         console.log(' Simulation saved to: ./data/transaction_simulation.json');
         console.log(' Share this simulation as proof your implementation works!');
