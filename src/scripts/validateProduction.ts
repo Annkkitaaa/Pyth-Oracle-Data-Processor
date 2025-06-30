@@ -61,7 +61,7 @@ async function validateProduction() {
     }
 
     // Validation 3: VAA Structure Analysis
-    console.log('\n🔍 Validation 3: VAA structure analysis...');
+    console.log('\n Validation 3: VAA structure analysis...');
     
     let structureValidationPassed = true;
     
