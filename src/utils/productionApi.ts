@@ -15,12 +15,12 @@ export class ProductionPythClient {
     const startTime = Date.now();
     
     try {
-      console.log(` Fetching individual price updates for ${priceIds.length} feeds...`);
+      console.log(`🔄 Fetching individual price updates for ${priceIds.length} feeds...`);
       
       // Validate price IDs first
       const validation = ProductionPythClient.validatePriceIds(priceIds);
       if (validation.invalid.length > 0) {
-        console.warn(`  Warning: Found ${validation.invalid.length} invalid price IDs`);
+        console.warn(`⚠️  Warning: Found ${validation.invalid.length} invalid price IDs`);
         validation.invalid.forEach(id => console.warn(`   - ${id}`));
       }
 
@@ -30,7 +30,7 @@ export class ProductionPythClient {
         throw new Error('No valid price IDs found');
       }
 
-      console.log(` Using ${validIds.length} unique valid IDs`);
+      console.log(`📊 Using ${validIds.length} unique valid IDs`);
 
       // Try with smaller batches first - API might have limits
       const batchSize = 10; // Increased batch size since we have valid IDs
@@ -38,13 +38,13 @@ export class ProductionPythClient {
 
       for (let i = 0; i < validIds.length; i += batchSize) {
         const batchIds = validIds.slice(i, i + batchSize);
-        console.log(` Processing batch ${Math.floor(i / batchSize) + 1}: ${batchIds.length} feeds`);
+        console.log(`🔄 Processing batch ${Math.floor(i / batchSize) + 1}: ${batchIds.length} feeds`);
         
         const batchResult = await this.fetchBatch(batchIds);
         if (batchResult.success && batchResult.data) {
           allIndividualUpdates.push(...batchResult.data);
         } else {
-          console.warn(`  Batch ${Math.floor(i / batchSize) + 1} failed: ${batchResult.error}`);
+          console.warn(`⚠️  Batch ${Math.floor(i / batchSize) + 1} failed: ${batchResult.error}`);
         }
         
         // Small delay between batches to be nice to the API
@@ -101,14 +101,14 @@ export class ProductionPythClient {
 
     for (let i = 0; i < methods.length; i++) {
       try {
-        console.log(` Trying Method ${i + 1} for batch of ${batchIds.length} feeds...`);
+        console.log(`🔄 Trying Method ${i + 1} for batch of ${batchIds.length} feeds...`);
         const result = await methods[i]();
         if (result.success) {
-          console.log(` Method ${i + 1} succeeded!`);
+          console.log(`✅ Method ${i + 1} succeeded!`);
           return result;
         }
       } catch (error) {
-        console.log(` Method ${i + 1} failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        console.log(`❌ Method ${i + 1} failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
         continue;
       }
     }
@@ -348,6 +348,9 @@ export class ProductionPythClient {
    * Get symbol for feed ID - UPDATED with new mappings
    */
   private getFeedSymbol(feedId: string): string {
+    // Ensure feedId has 0x prefix for consistent lookup
+    const normalizedFeedId = feedId.startsWith('0x') ? feedId : `0x${feedId}`;
+    
     const symbolMap: Record<string, string> = {
       // Crypto feeds (updated with new IDs)
       '0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43': 'BTC/USD',
@@ -378,7 +381,7 @@ export class ProductionPythClient {
       '0x84c2dde9633d93d1bcad84e7dc41c9d56578b7ec52fabedc1f335d673df0a7c1': 'GBP/USD'
     };
     
-    return symbolMap[feedId] || `Unknown(${feedId.slice(0, 8)}...)`;
+    return symbolMap[normalizedFeedId] || `Unknown(${feedId.slice(0, 8)}...)`;
   }
 }
 
