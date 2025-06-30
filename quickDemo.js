@@ -1,5 +1,3 @@
-// quickDemo.js
-// Creates a realistic simulation showing your VAAs would work
 
 const fs = require('fs');
 
