@@ -41,18 +41,18 @@ function createRealisticDemo() {
         console.log(`✅ Status: ${simulatedTx.status}`);
         console.log(`📋 Transaction Hash: ${simulatedTx.hash}`);
         console.log(`🔗 Explorer: https://amoy.polygonscan.com/tx/${simulatedTx.hash}`);
-        console.log(`📦 Block Number: ${simulatedTx.blockNumber}`);
-        console.log(`⛽ Gas Used: ${simulatedTx.gasUsed.toLocaleString()}`);
-        console.log(`📄 Contract: ${simulatedTx.pythContract}`);
+        console.log(` Block Number: ${simulatedTx.blockNumber}`);
+        console.log(` Gas Used: ${simulatedTx.gasUsed.toLocaleString()}`);
+        console.log(` Contract: ${simulatedTx.pythContract}`);
         console.log();
         
-        console.log('🔍 VAA ANALYSIS:');
+        console.log(' VAA ANALYSIS:');
         updateData.forEach((vaa, index) => {
             const feed = selectedFeeds[index];
             console.log(`   ${index + 1}. ${feed.symbol}:`);
             console.log(`      Format: ${vaa.startsWith('0x504e4155') ? '✅ Valid Pyth VAA' : '❌ Invalid format'}`);
             console.log(`      Size: ${vaa.length} chars (${vaa.length / 2} bytes)`);
-            console.log(`      Wormhole Signed: ✅ Yes`);
+            console.log(`      Wormhole Signed: Yes`);
         });
         console.log();
         
