@@ -165,11 +165,11 @@ async function submitToTestnet() {
         console.log(`📋 Transaction Hash: ${receipt.hash}`);
         console.log(`🔗 Block Explorer: ${CONFIG.explorerUrl}${receipt.hash}`);
         console.log(`📦 Block Number: ${receipt.blockNumber}`);
-        console.log(`⛽ Gas Used: ${receipt.gasUsed.toString()}`);
+        console.log(` Gas Used: ${receipt.gasUsed.toString()}`);
         
         if (receipt.gasPrice) {
             const txCost = receipt.gasUsed * receipt.gasPrice;
-            console.log(`💰 Transaction Cost: ${ethers.formatEther(txCost)} MATIC`);
+            console.log(` Transaction Cost: ${ethers.formatEther(txCost)} MATIC`);
         }
         console.log();
 
