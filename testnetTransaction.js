@@ -261,22 +261,22 @@ async function submitToTestnet() {
 
 // Usage instructions
 function showUsage() {
-    console.log('📋 TESTNET TRANSACTION USAGE:');
+    console.log(' TESTNET TRANSACTION USAGE:');
     console.log();
-    console.log('1️⃣  SETUP WALLET:');
+    console.log('1️  SETUP WALLET:');
     console.log('   • Install MetaMask extension');
     console.log('   • Add Polygon Amoy network');
     console.log('   • Get testnet MATIC from faucet');
     console.log();
-    console.log('2️⃣  EXPORT PRIVATE KEY:');
+    console.log('2️  EXPORT PRIVATE KEY:');
     console.log('   • MetaMask → Account Details → Export Private Key');
     console.log('   • Copy the key (MetaMask gives it WITHOUT 0x - that\'s normal!)');
     console.log();
-    console.log('3️⃣  RUN TRANSACTION:');
+    console.log('3️  RUN TRANSACTION:');
     console.log('   PRIVATE_KEY=1234567890abcdef... node testnetTransaction.js');
     console.log('   (Works with or without 0x prefix)');
     console.log();
-    console.log('🔗 HELPFUL LINKS:');
+    console.log(' HELPFUL LINKS:');
     console.log(`   Faucet: ${CONFIG.faucetUrl}`);
     console.log(`   Explorer: ${CONFIG.explorerUrl}`);
     console.log('   MetaMask: https://metamask.io/');
