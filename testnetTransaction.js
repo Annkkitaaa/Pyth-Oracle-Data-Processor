@@ -59,32 +59,32 @@ async function submitToTestnet() {
             console.log(`❌ Invalid VAAs found! ${validVAAs.length}/${updateData.length} valid`);
             return;
         }
-        console.log(`✅ All ${updateData.length} VAAs have valid Pyth format`);
+        console.log(` All ${updateData.length} VAAs have valid Pyth format`);
         console.log();
 
         // Step 3: Setup connection
-        console.log('🔧 Setting up blockchain connection...');
+        console.log(' Setting up blockchain connection...');
         const provider = new ethers.JsonRpcProvider(CONFIG.rpcUrl);
         
         // Check if private key provided and normalize it
         let privateKey = process.env.PRIVATE_KEY;
         if (!privateKey) {
-            console.log('❌ PRIVATE_KEY not found!');
+            console.log(' PRIVATE_KEY not found!');
             console.log();
-            console.log('🔑 HOW TO GET YOUR PRIVATE KEY:');
+            console.log(' HOW TO GET YOUR PRIVATE KEY:');
             console.log('1. Open MetaMask');
             console.log('2. Click account menu (top right)');
             console.log('3. Account Details → Export Private Key');
             console.log('4. Enter MetaMask password');
             console.log('5. Copy the private key (without 0x prefix - that\'s normal!)');
             console.log();
-            console.log('💻 USAGE (private key WITHOUT 0x):');
+            console.log(' USAGE (private key WITHOUT 0x):');
             console.log('PRIVATE_KEY=1234567890abcdef... node testnetTransaction.js');
             console.log();
-            console.log('💻 USAGE (private key WITH 0x also works):');
+            console.log(' USAGE (private key WITH 0x also works):');
             console.log('PRIVATE_KEY=0x1234567890abcdef... node testnetTransaction.js');
             console.log();
-            console.log('💰 GET TESTNET MATIC:');
+            console.log(' GET TESTNET MATIC:');
             console.log(`Go to: ${CONFIG.faucetUrl}`);
             return;
         }
