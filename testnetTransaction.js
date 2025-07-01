@@ -150,16 +150,16 @@ async function submitToTestnet() {
             gasLimit: gasLimit
         });
 
-        console.log('📋 TRANSACTION SUBMITTED!');
-        console.log(`🔗 Hash: ${tx.hash}`);
-        console.log(`🌐 View: ${CONFIG.explorerUrl}${tx.hash}`);
+        console.log(' TRANSACTION SUBMITTED!');
+        console.log(` Hash: ${tx.hash}`);
+        console.log(` View: ${CONFIG.explorerUrl}${tx.hash}`);
         console.log();
 
         // Step 8: Wait for confirmation
-        console.log('⏳ Waiting for confirmation...');
+        console.log(' Waiting for confirmation...');
         const receipt = await tx.wait(1); // Wait for 1 confirmation
 
-        console.log('🎉 TRANSACTION CONFIRMED!');
+        console.log(' TRANSACTION CONFIRMED!');
         console.log('='.repeat(50));
         console.log(` Status: ${receipt.status === 1 ? 'SUCCESS ✅' : 'FAILED ❌'}`);
         console.log(` Transaction Hash: ${receipt.hash}`);
