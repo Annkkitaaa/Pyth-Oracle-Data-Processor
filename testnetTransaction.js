@@ -225,17 +225,17 @@ async function submitToTestnet() {
 
         console.log('🎉 SUCCESS! REAL TRANSACTION COMPLETED!');
         console.log('='.repeat(50));
-        console.log('📋 PROOF FOR SUBMISSION:');
+        console.log(' PROOF FOR SUBMISSION:');
         console.log(`   Transaction Hash: ${receipt.hash}`);
         console.log(`   Block Explorer: ${CONFIG.explorerUrl}${receipt.hash}`);
         console.log(`   Network: ${CONFIG.network}`);
-        console.log(`   Status: Confirmed ✅`);
+        console.log(`   Status: Confirmed `);
         console.log();
-        console.log('📁 Complete proof saved to: ./data/testnet_transaction_proof.json');
-        console.log('🚀 Share the transaction hash as proof your implementation works!');
+        console.log(' Complete proof saved to: ./data/testnet_transaction_proof.json');
+        console.log(' Share the transaction hash as proof your implementation works!');
 
     } catch (error) {
-        console.error('❌ TRANSACTION FAILED:', error.message);
+        console.error(' TRANSACTION FAILED:', error.message);
         console.log();
         
         if (error.message.includes('insufficient funds')) {
