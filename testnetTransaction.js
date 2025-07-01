@@ -239,15 +239,15 @@ async function submitToTestnet() {
         console.log();
         
         if (error.message.includes('insufficient funds')) {
-            console.log('💡 SOLUTION: Get more testnet MATIC');
+            console.log(' SOLUTION: Get more testnet MATIC');
             console.log(`   Faucet: ${CONFIG.faucetUrl}`);
         } else if (error.message.includes('nonce')) {
-            console.log('💡 SOLUTION: Wait 30 seconds and try again (nonce conflict)');
+            console.log(' SOLUTION: Wait 30 seconds and try again (nonce conflict)');
         } else if (error.message.includes('gas')) {
-            console.log('💡 SOLUTION: VAAs might be expired, get fresh ones:');
+            console.log(' SOLUTION: VAAs might be expired, get fresh ones:');
             console.log('   npm run production-pipeline');
         } else if (error.message.includes('execution reverted')) {
-            console.log('💡 SOLUTION: VAAs might be invalid or expired');
+            console.log(' SOLUTION: VAAs might be invalid or expired');
             console.log('   1. Run: npm run production-pipeline');
             console.log('   2. Try again immediately with fresh VAAs');
         }
