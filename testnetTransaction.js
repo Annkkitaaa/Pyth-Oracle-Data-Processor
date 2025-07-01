@@ -130,19 +130,19 @@ async function submitToTestnet() {
             gasEstimate = await pythContract.updatePriceFeeds.estimateGas(updateData, {
                 value: updateFee
             });
-            console.log(`✅ Gas estimate: ${gasEstimate.toString()}`);
+            console.log(`Gas estimate: ${gasEstimate.toString()}`);
         } catch (error) {
-            console.log('⚠️  Gas estimation failed, using default: 400,000');
+            console.log('  Gas estimation failed, using default: 400,000');
             gasEstimate = 400000n;
         }
 
         const gasLimit = gasEstimate * 120n / 100n; // 20% buffer
-        console.log(`⛽ Gas limit (with buffer): ${gasLimit.toString()}`);
+        console.log(` Gas limit (with buffer): ${gasLimit.toString()}`);
         console.log();
 
         // Step 7: Submit transaction
-        console.log('🚀 SUBMITTING TRANSACTION TO BLOCKCHAIN...');
-        console.log('⏳ This will take 10-30 seconds...');
+        console.log(' SUBMITTING TRANSACTION TO BLOCKCHAIN...');
+        console.log(' This will take 10-30 seconds...');
         console.log();
 
         const tx = await pythContract.updatePriceFeeds(updateData, {
