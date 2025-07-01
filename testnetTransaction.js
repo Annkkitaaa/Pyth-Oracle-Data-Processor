@@ -174,7 +174,7 @@ async function submitToTestnet() {
         console.log();
 
         // Step 9: Try to verify price updates
-        console.log('🔍 Attempting to verify updated prices...');
+        console.log(' Attempting to verify updated prices...');
         for (let i = 0; i < Math.min(selectedFeeds.length, 3); i++) {
             try {
                 const feed = selectedFeeds[i];
@@ -191,9 +191,9 @@ async function submitToTestnet() {
                 const price = Number(priceData.price) / Math.pow(10, Math.abs(priceData.expo));
                 const conf = Number(priceData.conf) / Math.pow(10, Math.abs(priceData.expo));
                 
-                console.log(`✅ ${feed.symbol}: $${price.toFixed(2)} ±${conf.toFixed(2)} (Verified on-chain!)`);
+                console.log(` ${feed.symbol}: $${price.toFixed(2)} ±${conf.toFixed(2)} (Verified on-chain!)`);
             } catch (error) {
-                console.log(`⚠️  ${selectedFeeds[i].symbol}: Could not verify (${error.message.slice(0, 50)}...)`);
+                console.log(` ${selectedFeeds[i].symbol}: Could not verify (${error.message.slice(0, 50)}...)`);
             }
         }
         console.log();
@@ -223,7 +223,7 @@ async function submitToTestnet() {
 
         fs.writeFileSync('./data/testnet_transaction_proof.json', JSON.stringify(results, null, 2));
 
-        console.log('🎉 SUCCESS! REAL TRANSACTION COMPLETED!');
+        console.log(' SUCCESS! REAL TRANSACTION COMPLETED!');
         console.log('='.repeat(50));
         console.log(' PROOF FOR SUBMISSION:');
         console.log(`   Transaction Hash: ${receipt.hash}`);
