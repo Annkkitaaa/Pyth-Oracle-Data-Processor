@@ -253,7 +253,7 @@ async function submitToTestnet() {
         }
         
         console.log();
-        console.log('🔧 DEBUG INFO:');
+        console.log(' DEBUG INFO:');
         console.log(`   Error type: ${error.code || 'Unknown'}`);
         console.log(`   Full error: ${error.message}`);
     }
