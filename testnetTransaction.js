@@ -113,18 +113,18 @@ async function submitToTestnet() {
         console.log();
 
         // Step 5: Calculate fees
-        console.log('💰 Calculating Pyth update fee...');
+        console.log(' Calculating Pyth update fee...');
         let updateFee;
         try {
             updateFee = await pythContract.getUpdateFee(updateData);
-            console.log(`✅ Pyth update fee: ${ethers.formatEther(updateFee)} MATIC`);
+            console.log(` Pyth update fee: ${ethers.formatEther(updateFee)} MATIC`);
         } catch (error) {
-            console.log('⚠️  Could not get update fee, using 0 (some testnets are free)');
+            console.log(' Could not get update fee, using 0 (some testnets are free)');
             updateFee = ethers.parseEther('0');
         }
 
         // Step 6: Estimate gas
-        console.log('⛽ Estimating gas...');
+        console.log(' Estimating gas...');
         let gasEstimate;
         try {
             gasEstimate = await pythContract.updatePriceFeeds.estimateGas(updateData, {
