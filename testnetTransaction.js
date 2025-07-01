@@ -4,6 +4,9 @@
 const { ethers } = require('ethers');
 const fs = require('fs');
 
+// Load environment variables from .env file
+require('dotenv').config();
+
 // Configuration
 const CONFIG = {
     network: 'Polygon Amoy Testnet',
@@ -63,8 +66,8 @@ async function submitToTestnet() {
         console.log('🔧 Setting up blockchain connection...');
         const provider = new ethers.JsonRpcProvider(CONFIG.rpcUrl);
         
-        // Check if private key provided
-        const privateKey = process.env.PRIVATE_KEY;
+        // Check if private key provided and normalize it
+        let privateKey = process.env.PRIVATE_KEY;
         if (!privateKey) {
             console.log('❌ PRIVATE_KEY not found!');
             console.log();
@@ -73,14 +76,22 @@ async function submitToTestnet() {
             console.log('2. Click account menu (top right)');
             console.log('3. Account Details → Export Private Key');
             console.log('4. Enter MetaMask password');
-            console.log('5. Copy the private key');
+            console.log('5. Copy the private key (without 0x prefix - that\'s normal!)');
             console.log();
-            console.log('💻 USAGE:');
+            console.log('💻 USAGE (private key WITHOUT 0x):');
+            console.log('PRIVATE_KEY=1234567890abcdef... node testnetTransaction.js');
+            console.log();
+            console.log('💻 USAGE (private key WITH 0x also works):');
             console.log('PRIVATE_KEY=0x1234567890abcdef... node testnetTransaction.js');
             console.log();
             console.log('💰 GET TESTNET MATIC:');
             console.log(`Go to: ${CONFIG.faucetUrl}`);
             return;
+        }
+
+        // Normalize private key format (add 0x if missing)
+        if (!privateKey.startsWith('0x')) {
+            privateKey = '0x' + privateKey;
         }
 
         const wallet = new ethers.Wallet(privateKey, provider);
@@ -259,9 +270,11 @@ function showUsage() {
     console.log();
     console.log('2️⃣  EXPORT PRIVATE KEY:');
     console.log('   • MetaMask → Account Details → Export Private Key');
+    console.log('   • Copy the key (MetaMask gives it WITHOUT 0x - that\'s normal!)');
     console.log();
     console.log('3️⃣  RUN TRANSACTION:');
-    console.log('   PRIVATE_KEY=0x1234... node testnetTransaction.js');
+    console.log('   PRIVATE_KEY=1234567890abcdef... node testnetTransaction.js');
+    console.log('   (Works with or without 0x prefix)');
     console.log();
     console.log('🔗 HELPFUL LINKS:');
     console.log(`   Faucet: ${CONFIG.faucetUrl}`);

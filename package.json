@@ -7,36 +7,29 @@
     "build": "tsc",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "start": "node dist/index.js",
-    
     "fetch": "ts-node src/scripts/fetchPriceUpdates.ts",
     "decode": "ts-node src/scripts/decodePriceData.ts",
     "reencode": "ts-node src/scripts/reencodeSelected.ts",
     "validate": "ts-node src/scripts/validateUpdate.ts",
     "process-all": "npm run fetch && npm run decode && npm run reencode && npm run validate",
-    
     "fetch-production": "ts-node src/scripts/fetchProductionUpdates.ts",
     "select-production": "ts-node src/scripts/selectProductionFeeds.ts",
     "validate-production": "ts-node src/scripts/validateProduction.ts",
     "production-pipeline": "npm run fetch-production && npm run select-production && npm run validate-production",
-    
     "benchmark": "ts-node src/scripts/benchmark.ts",
     "health-check": "ts-node src/scripts/healthCheck.ts",
     "health-monitor": "ts-node src/scripts/healthCheck.ts monitor",
     "health-quick": "ts-node src/scripts/healthCheck.ts quick",
-    
     "docker:build": "docker build -t pyth-oracle-processor .",
     "docker:run": "docker run --rm -v $(pwd)/data:/app/data pyth-oracle-processor",
     "docker:compose": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    
     "test": "jest",
     "test:watch": "jest --watch",
     "test:integration": "RUN_INTEGRATION_TESTS=true jest --testPathPattern=integration",
     "test:production": "RUN_INTEGRATION_TESTS=true jest --testPathPattern=production",
-    
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
-    
     "clean": "rm -rf dist/ data/*.json",
     "reset": "npm run clean && npm install"
   },
@@ -51,7 +44,8 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^1.7.7",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.6.1",
+    "ethers": "^6.14.4"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",

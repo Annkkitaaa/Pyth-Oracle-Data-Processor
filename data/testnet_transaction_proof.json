@@ -1,0 +1,43 @@
+{
+  "success": true,
+  "transactionHash": "0x6b17bf97a6b9f93312dad16efc42a1229be01e2f06e19128eebf6292805112c5",
+  "blockNumber": 23372063,
+  "gasUsed": "825380",
+  "network": "Polygon Amoy Testnet",
+  "explorerUrl": "https://amoy.polygonscan.com/tx/0x6b17bf97a6b9f93312dad16efc42a1229be01e2f06e19128eebf6292805112c5",
+  "pythContract": "0xDd24F84d36BF92C65F92307595335bdFab5Bbd21",
+  "timestamp": "2025-07-01T08:05:10.394Z",
+  "submittedVAAs": 5,
+  "selectedAssets": [
+    {
+      "symbol": "BTC/USD",
+      "price": 107169.58645795,
+      "feedId": "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+    },
+    {
+      "symbol": "ADA/USD",
+      "price": 0.56793058,
+      "feedId": "2a01deaec9e51a579277b34b122399984d0bbf57e2458a7e42fecd2829867a0d"
+    },
+    {
+      "symbol": "TSLA/USD",
+      "price": 317.78564,
+      "feedId": "16dad506d7db8da01c87581c87ca897a012a153557d4d578c3b9c9e1bc0632f1"
+    },
+    {
+      "symbol": "XAU/USD",
+      "price": 3339.188,
+      "feedId": "765d2ba906dbc32ca17cc11f5310a89e9ee1f6420508c63861f2f8ba4ee34bb2"
+    },
+    {
+      "symbol": "EUR/USD",
+      "price": 1.17545479,
+      "feedId": "84755269cafa0a552ce2962c5ac7369a4da7aef57a01379b87736698387b793b"
+    }
+  ],
+  "proof": {
+    "realTransaction": true,
+    "blockchainVerified": true,
+    "pythVAAsWorking": true
+  }
+}
