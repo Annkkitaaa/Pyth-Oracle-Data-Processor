@@ -161,10 +161,10 @@ async function submitToTestnet() {
 
         console.log('🎉 TRANSACTION CONFIRMED!');
         console.log('='.repeat(50));
-        console.log(`✅ Status: ${receipt.status === 1 ? 'SUCCESS ✅' : 'FAILED ❌'}`);
-        console.log(`📋 Transaction Hash: ${receipt.hash}`);
-        console.log(`🔗 Block Explorer: ${CONFIG.explorerUrl}${receipt.hash}`);
-        console.log(`📦 Block Number: ${receipt.blockNumber}`);
+        console.log(` Status: ${receipt.status === 1 ? 'SUCCESS ✅' : 'FAILED ❌'}`);
+        console.log(` Transaction Hash: ${receipt.hash}`);
+        console.log(` Block Explorer: ${CONFIG.explorerUrl}${receipt.hash}`);
+        console.log(` Block Number: ${receipt.blockNumber}`);
         console.log(` Gas Used: ${receipt.gasUsed.toString()}`);
         
         if (receipt.gasPrice) {
