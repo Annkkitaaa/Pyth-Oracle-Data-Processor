@@ -26,19 +26,19 @@ const PYTH_ABI = [
 ];
 
 async function submitToTestnet() {
-    console.log('🚀 REAL TESTNET TRANSACTION SUBMISSION');
+    console.log(' REAL TESTNET TRANSACTION SUBMISSION');
     console.log('='.repeat(60));
-    console.log(`🌐 Network: ${CONFIG.network}`);
-    console.log(`📄 Pyth Contract: ${CONFIG.pythContract}`);
-    console.log(`🔗 Explorer: ${CONFIG.explorerUrl}`);
+    console.log(` Network: ${CONFIG.network}`);
+    console.log(` Pyth Contract: ${CONFIG.pythContract}`);
+    console.log(` Explorer: ${CONFIG.explorerUrl}`);
     console.log();
 
     try {
         // Step 1: Load your production VAAs
-        console.log('📖 Loading your generated VAAs...');
+        console.log(' Loading your generated VAAs...');
         if (!fs.existsSync('./data/reencoded_data_production.json')) {
-            console.log('❌ Production data not found!');
-            console.log('💡 Run: npm run production-pipeline');
+            console.log(' Production data not found!');
+            console.log(' Run: npm run production-pipeline');
             return;
         }
 
@@ -46,17 +46,17 @@ async function submitToTestnet() {
         const { onChainData, selectedFeeds } = productionData.productionUpdates;
         const updateData = onChainData.individualVAAs;
 
-        console.log(`✅ Loaded ${updateData.length} VAAs:`);
+        console.log(` Loaded ${updateData.length} VAAs:`);
         selectedFeeds.forEach((feed, i) => {
             console.log(`   ${i + 1}. ${feed.symbol}: $${feed.price.toFixed(2)}`);
         });
         console.log();
 
         // Step 2: Validate VAA format
-        console.log('🔍 Validating VAA format...');
+        console.log(' Validating VAA format...');
         const validVAAs = updateData.filter(vaa => vaa.startsWith('0x504e4155'));
         if (validVAAs.length !== updateData.length) {
-            console.log(`❌ Invalid VAAs found! ${validVAAs.length}/${updateData.length} valid`);
+            console.log(` Invalid VAAs found! ${validVAAs.length}/${updateData.length} valid`);
             return;
         }
         console.log(` All ${updateData.length} VAAs have valid Pyth format`);
