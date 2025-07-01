@@ -97,17 +97,17 @@ async function submitToTestnet() {
         const wallet = new ethers.Wallet(privateKey, provider);
         const pythContract = new ethers.Contract(CONFIG.pythContract, PYTH_ABI, wallet);
 
-        console.log(`✅ Wallet connected: ${wallet.address}`);
+        console.log(` Wallet connected: ${wallet.address}`);
 
         // Step 4: Check balance
-        console.log('💰 Checking wallet balance...');
+        console.log(' Checking wallet balance...');
         const balance = await provider.getBalance(wallet.address);
         const balanceETH = ethers.formatEther(balance);
-        console.log(`💳 Balance: ${balanceETH} MATIC`);
+        console.log(` Balance: ${balanceETH} MATIC`);
 
         if (parseFloat(balanceETH) < 0.01) {
-            console.log('❌ Insufficient balance! Need at least 0.01 MATIC');
-            console.log(`💰 Get free MATIC: ${CONFIG.faucetUrl}`);
+            console.log(' Insufficient balance! Need at least 0.01 MATIC');
+            console.log(` Get free MATIC: ${CONFIG.faucetUrl}`);
             return;
         }
         console.log();
